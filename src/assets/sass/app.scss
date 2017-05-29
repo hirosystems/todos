@@ -1,0 +1,27 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:300,400,500,600,700");
+
+// Bootstrap
+@import "variables";
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+html, body, #app {
+  height: 100%;
+}
+
+.btn {
+  &.btn-default {
+    color: $purple
+  }
+}
+
+.list-group-item {
+  color: $purple;
+}
+
+.creds {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  text-align: right;
+}

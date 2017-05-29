@@ -1,0 +1,34 @@
+
+// Body
+$purple: #270F34;
+$body-bg: $purple;
+
+// Brands
+$brand-primary: #fff;
+$brand-info: #8eb4cb;
+$brand-success: #2ab27b;
+$brand-warning: #cbb956;
+$brand-danger: #bf5329;
+
+// Typography
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$font-family-sans-serif: 'Source Code Pro',monospace;
+$font-size-base: 12px;
+$line-height-base: 1.6;
+$text-color: #fff;
+
+// Navbar
+$navbar-default-bg: #fff;
+
+// Buttons
+$btn-default-color: $text-color;
+
+// Inputs
+$input-border: lighten($text-color, 40%);
+$input-border-focus: lighten($brand-primary, 25%);
+$input-color-placeholder: lighten($text-color, 30%);
+
+// Panels
+$panel-default-heading-bg: #fff;
+
+$border-radius-base: 0px !default;
