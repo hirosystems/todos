@@ -92,6 +92,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 
+input::placeholder {
+  color: grey;
+}
+
 label {
   margin-bottom: 0;
   // width: 100%;
