@@ -9,7 +9,7 @@
             <div class="input-group">
               <input v-model="todo" type="text" class="form-control" placeholder="Write a todo..." autofocus>
               <span class="input-group-btn">
-                <button class="btn btn-default" type="button" :disabled="! todo">Add</button>
+                <button class="btn btn-default" type="submit" :disabled="! todo">Add</button>
               </span>
             </div>
           </form>
