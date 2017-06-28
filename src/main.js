@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 
 window.blockstack = require('blockstack')
+window.blockstackStorage = require('blockstack-storage')
 window.axios = require('axios')
 
 Vue.config.productionTip = false

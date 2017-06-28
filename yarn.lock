@@ -858,9 +858,9 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-blockstack-storage@0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/blockstack-storage/-/blockstack-storage-0.2.0.tgz#cb8748c6955963d1ebf763a4d12ac34c5a0ce417"
+blockstack-storage@0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/blockstack-storage/-/blockstack-storage-0.2.6.tgz#5ecc47aa63050a10dbd3014e314250f76eb2cb4c"
   dependencies:
     ajv "^4.11.5"
     bitcoinjs-lib "^2.3.0"
