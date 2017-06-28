@@ -35,19 +35,25 @@
 </template>
 
 <script>
-// localStorage persistence
-var STORAGE_KEY = 'blockstack-todos'
+// Gaia persistence
+var STORAGE_FILE = 'todos.json'
+
 var todoStorage = {
   fetch: function () {
-    var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
-    todos.forEach(function (todo, index) {
-      todo.id = index
+    return new Promise((resolve, reject) => {
+      return window.blockstackStorage.getFile(STORAGE_FILE)
+      .then((todosText) => {
+        var todos = JSON.parse(todosText || '[]')
+        todos.forEach(function (todo, index) {
+          todo.id = index
+        })
+        todoStorage.uid = todos.length
+        resolve(todos)
+      })
     })
-    todoStorage.uid = todos.length
-    return todos
   },
   save: function (todos) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+    return window.blockstackStorage.putFile(STORAGE_FILE, JSON.stringify(todos))
   }
 }
 
@@ -57,6 +63,7 @@ export default {
   data () {
     return {
       blockstack: window.blockstack,
+      blockstackStorage: window.blockstackStorage,
       todos: todoStorage.fetch(),
       todo: ''
     }
@@ -64,7 +71,7 @@ export default {
   watch: {
     todos: {
       handler: function (todos) {
-        todoStorage.save(todos)
+        return todoStorage.save(todos)
       },
       deep: true
     }
