@@ -38,25 +38,6 @@
 // Gaia persistence
 var STORAGE_FILE = 'todos.json'
 
-var todoStorage = {
-  fetch: function () {
-    return new Promise((resolve, reject) => {
-      return window.blockstackStorage.getFile(STORAGE_FILE)
-      .then((todosText) => {
-        var todos = JSON.parse(todosText || '[]')
-        todos.forEach(function (todo, index) {
-          todo.id = index
-        })
-        todoStorage.uid = todos.length
-        resolve(todos)
-      })
-    })
-  },
-  save: function (todos) {
-    return window.blockstackStorage.putFile(STORAGE_FILE, JSON.stringify(todos))
-  }
-}
-
 export default {
   name: 'dashboard',
   props: ['user'],
@@ -64,17 +45,21 @@ export default {
     return {
       blockstack: window.blockstack,
       blockstackStorage: window.blockstackStorage,
-      todos: todoStorage.fetch(),
-      todo: ''
+      todos: [],
+      todo: '',
+      uidCount: 0
     }
   },
   watch: {
     todos: {
       handler: function (todos) {
-        return todoStorage.save(todos)
+        return this.blockstackStorage.putFile(STORAGE_FILE, JSON.stringify(todos))
       },
       deep: true
     }
+  },
+  mounted () {
+    this.fetchData()
   },
   methods: {
     addTodo () {
@@ -82,11 +67,23 @@ export default {
         return
       }
       this.todos.unshift({
-        id: todoStorage.uid++,
+        id: this.uidCount++,
         text: this.todo.trim(),
         completed: false
       })
       this.todo = ''
+    },
+
+    fetchData () {
+      this.blockstackStorage.getFile(STORAGE_FILE)
+      .then((todosText) => {
+        var todos = JSON.parse(todosText || '[]')
+        todos.forEach(function (todo, index) {
+          todo.id = index
+        })
+        this.uidCount = todos.length
+        this.todos = todos
+      })
     },
 
     signOut () {
