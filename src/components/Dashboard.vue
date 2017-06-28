@@ -35,7 +35,6 @@
 </template>
 
 <script>
-// Gaia persistence
 var STORAGE_FILE = 'todos.json'
 
 export default {
@@ -44,7 +43,6 @@ export default {
   data () {
     return {
       blockstack: window.blockstack,
-      blockstackStorage: window.blockstackStorage,
       todos: [],
       todo: '',
       uidCount: 0
@@ -53,7 +51,7 @@ export default {
   watch: {
     todos: {
       handler: function (todos) {
-        return this.blockstackStorage.putFile(STORAGE_FILE, JSON.stringify(todos))
+        return this.blockstack.putFile(STORAGE_FILE, JSON.stringify(todos))
       },
       deep: true
     }
@@ -75,7 +73,7 @@ export default {
     },
 
     fetchData () {
-      this.blockstackStorage.getFile(STORAGE_FILE)
+      this.blockstack.getFile(STORAGE_FILE)
       .then((todosText) => {
         var todos = JSON.parse(todosText || '[]')
         todos.forEach(function (todo, index) {
