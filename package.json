@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
-    "blockstack": "^0.3.11",
+    "blockstack": "^0.4.0",
+    "blockstack-storage": "0.2.0",
     "bootstrap-sass": "^3.3.7",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.5",
