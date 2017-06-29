@@ -19,7 +19,8 @@ export default {
 
   methods: {
     signIn () {
-      this.blockstack.redirectToSignIn()
+      const blockstack = this.blockstack
+      blockstack.redirectToSignIn()
     }
   }
 }
