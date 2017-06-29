@@ -869,9 +869,9 @@ blockstack-storage@^0.2.6:
     jsontokens "^0.7.4"
     uuid "^3.0.1"
 
-blockstack@0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/blockstack/-/blockstack-0.5.0.tgz#4ace4b245de7743575585831888b67f234c4c66f"
+blockstack@0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/blockstack/-/blockstack-0.7.0.tgz#c09b0e3ffaf8dd833f80e573d83360c78fc55539"
   dependencies:
     ajv "^4.11.5"
     bitcoinjs-lib "^2.3.0"
