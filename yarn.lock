@@ -858,9 +858,9 @@ block-stream@*:
   dependencies:
     inherits "~2.0.0"
 
-blockstack-storage@^0.2.6:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/blockstack-storage/-/blockstack-storage-0.2.6.tgz#5ecc47aa63050a10dbd3014e314250f76eb2cb4c"
+blockstack-storage@^0.2.8:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/blockstack-storage/-/blockstack-storage-0.2.8.tgz#39b34a0a349833fd749df316d70e675a9e1bcccb"
   dependencies:
     ajv "^4.11.5"
     bitcoinjs-lib "^2.3.0"
@@ -869,13 +869,13 @@ blockstack-storage@^0.2.6:
     jsontokens "^0.7.4"
     uuid "^3.0.1"
 
-blockstack@0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/blockstack/-/blockstack-0.9.0.tgz#472bc34a42d90538b9f8fd8af9aa96cd30421ee3"
+blockstack@0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/blockstack/-/blockstack-0.9.1.tgz#de7249e889bca19f9e5db5b7fd15ceaba4574d3c"
   dependencies:
     ajv "^4.11.5"
     bitcoinjs-lib "^2.3.0"
-    blockstack-storage "^0.2.6"
+    blockstack-storage "^0.2.8"
     custom-protocol-detection-blockstack "1.1.3"
     ecurve "^1.0.5"
     elliptic "^6.4.0"
