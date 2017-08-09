@@ -1,34 +1,73 @@
+// Table of Contents
+//
+//  1. Colors
+//  2. Options
+//  3. Spacing - Note: b4 has resolved a lot of spacing issues. for this version we are utilizing the custom spacing rules from blockstack.com. Upon import of blockstack-bootstrap, go through styles and replace with latest spacing rules from b4.
+//  4. Body
+//  5. Links
+//  6. Grid breakpoints
+//  7. Grid containers
+//  8. Grid columns
+//  9. Fonts
+// 10. Components
+// 11. Tables
+// 12. Buttons
+// 13. Forms
+// 14. Dropdowns
+// 15. Z-index master list
+// 16. Navbar
+// 17. Navs
+// 18. Pagination
+// 19. Jumbotron
+// 20. Form states and alerts
+// 21. Cards
+// 22. Tooltips
+// 23. Popovers
+// 24. Tags
+// 25. Modals
+// 26. Alerts
+// 27. Progress bars
+// 28. List group
+// 29. Image thumbnails
+// 30. Figures
+// 31. Breadcrumbs
+// 32. Media objects
+// 33. Carousel
+// 34. Close
+// 35. Code
+// 36. Status Bars
+// 37. Misc
 
-// Body
+// 1. Colors
 $purple: #270F34;
 $body-bg: $purple;
 
-// Brands
 $brand-primary: #fff;
 $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
 $brand-warning: #cbb956;
 $brand-danger: #bf5329;
 
-// Typography
+// 9. Fonts
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 $font-family-sans-serif: 'Source Code Pro',monospace;
 $font-size-base: 12px;
 $line-height-base: 1.6;
 $text-color: #fff;
 
-// Navbar
-$navbar-default-bg: #fff;
+// 10. Components
+$border-radius-base: 0px !default;
 
-// Buttons
+// 12. Buttons
 $btn-default-color: $text-color;
 
-// Inputs
+// 13. Forms
 $input-border: lighten($text-color, 40%);
 $input-border-focus: lighten($brand-primary, 25%);
 $input-color-placeholder: lighten($text-color, 30%);
 
-// Panels
-$panel-default-heading-bg: #fff;
+// 16. Navbar
+$navbar-default-bg: #fff;
 
-$border-radius-base: 0px !default;
+// 37. Misc
+$panel-default-heading-bg: #fff;
