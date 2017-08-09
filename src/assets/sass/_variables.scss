@@ -39,8 +39,100 @@
 // 37. Misc
 
 // 1. Colors
-$purple: #270F34;
-$body-bg: $purple;
+
+// Blockstack Label Colors - https://projects.invisionapp.com/boards/HE2VVROFSGB27/
+// These label colors come from Google's Material Design Color Set [500] - Alternative shades [100 - 900] - http://materialuicolors.co/
+
+$label-red:                 #F44336;  // label: bug
+$label-purple:              #9C27B0;  // label: ui
+$label-deep-purple:         #673AB7;  // label: feature-request
+$label-indigo:              #3F51B5;  // label: copywriting
+$label-blue:                #2196F3;  // label: help wanted
+$label-teal:                #009688;  // label: question
+$label-green:               #4CAF50;  // label: documentation
+$label-light-blue:          #03A9F4;  // label: enhancement
+$label-cyan:                #00BCD4;  // label: refactoring
+$label-light-green:         #8BC34A;  // label: production
+$label-lime:                #CDDC39;  // label: wontfix
+$label-yellow:              #FFEB3B;  // label: request
+$label-amber:               #FFC107;  // label: help-wanted
+$label-orange:              #FF9800;  // label: duplicate
+$label-deep-orange:         #FF5722;  // label: invalid
+$label-brown:               #795548;  // label: events
+$label-gray:                #9E9E9E;  // label: fixed in the next release
+$label-purple-a400:         #D500F9;  // label: release-list*
+$label-blue-gray:           #607D8B;  // label: strategy
+$label-raspberry:           #880E4F;  // label: chore
+
+$electric-magenta:          #E91E63;  // label: high-priority + stereoscopy magenta
+$electric-blue:             #2C96FF;  // label: design + stereoscopy blue
+
+$midnight-50:               #434345;
+$midnight-100:              #3a3a3d;
+$midnight-200:              #323234;
+$midnight-300:              #2a2a2b;
+$midnight-400:              #212123;
+$midnight-500:              #19191a;
+$midnight-600:              #111111;
+$midnight-700:              #080809;  // body copy (dark)
+
+$deep-slate-50:             #494f56;
+$deep-slate-100:            #41474d;
+$deep-slate-200:            #393e44;
+$deep-slate-300:            #32363a;
+$deep-slate-400:            #2a2d31;
+$deep-slate-500:            #222528;
+$deep-slate-600:            #1a1d1f;
+$deep-slate-700:            #121416;
+$deep-slate-800:            #0b0c0c;
+$deep-slate-900:            #030303;
+
+$purple-5:                  #f4f2f4;
+$purple-10:                 #eae7eb;
+$purple-15:                 #dfdbe1;
+$purple-20:                 #d4cfd7;
+$purple-25:                 #cac3cd;
+$purple-30:                 #c0b8c4;
+$purple-35:                 #b5abba;
+$purple-40:                 #aa9fb0;
+$purple-45:                 #9f93a6;
+$purple-50:                 #95889c;  // 50 + logos + type
+$purple-55:                 #8b7c92;
+$purple-60:                 #807088;
+$purple-65:                 #75647e;
+$purple-70:                 #6b5875;
+$purple-75:                 #604c6b;  // 75 + bug
+$purple-80:                 #564061;
+$purple-85:                 #4b3457;  // 85 + bug + lines
+$purple-90:                 #41294e;  // 90 + bug + dots
+$purple-95:                 #361d44;
+$purple-100:                #2c113a;
+$purple-105:                #291037;
+$purple-110:                #270f34;  // 110 + background
+$purple-120:                #230d2e;
+$purple-125:                #200c2b;
+$purple-130:                #1e0b28;
+$purple-135:                #1c0b25;
+$purple-140:                #1a0a22;
+$purple-145:                #18091f;
+$purple-150:                #15081c;
+
+$gray-50:                   #fafafa;
+$gray-75:                   #f0f0f0;
+$gray-85:                   #e6e6e6;
+$gray-100:                  #e1e1e1;
+$gray-200:                  #c7c7c7;
+$gray-300:                  #aeaeae;
+$gray-400:                  #949494;  // body copy (light gray)
+$gray-500:                  #7b7b7b;
+$gray-600:                  #616161;
+$gray-700:                  #484848;  // body copy
+$gray-800:                  #2e2e2e;
+$gray-850:                  #222222;
+$gray-900:                  #1c1c1c;
+$gray-950:                  #151515;
+
+$body-bg: $purple-110;
 
 $brand-primary: #fff;
 $brand-info: #8eb4cb;
