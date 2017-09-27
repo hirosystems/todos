@@ -23,7 +23,7 @@ export default {
     if (blockstack.isUserSignedIn()) {
       this.user = blockstack.loadUserData().profile
     } else if (blockstack.isSignInPending()) {
-      blockstack.handlePendingSignIn('http://localhost:6270/v1/names')
+      blockstack.handlePendingSignIn()
       .then((userData) => {
         window.location = window.location.origin
       })
