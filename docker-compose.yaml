@@ -1,7 +1,7 @@
 version: '2'
 services:
   cors-proxy:
-    image: 'quay.io/blockstack/blockstack-browser:develop'
+    image: 'quay.io/blockstack/blockstack-browser:v0.17.1'
     command: blockstack-cors-proxy
     environment:
       - CORSPROXY_HOST=0.0.0.0
@@ -10,14 +10,14 @@ services:
     restart: always
 
   blockstack-browser:
-    image: 'quay.io/blockstack/blockstack-browser:develop'
+    image: 'quay.io/blockstack/blockstack-browser:v0.17.1'
     command: 'blockstack-browser'
     ports:
       - 8888:8888
     restart: always
 
   blockstack-api:
-    image: 'quay.io/blockstack/integrationtests:develop'
+    image: 'quay.io/blockstack/integrationtests:v0.17.1-browser'
     command: 'blockstack-test-scenario --interactive 2 blockstack_integration_tests.scenarios.portal_test_env'
     tty: true
     ports:
