@@ -24,14 +24,59 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 ### Running with the Blockstack Test Environment
 
-The Todo App can be easiest to develop against the Regtest bitcoin environment. The easiest way to get that setup is through the `docker-compose.yaml` file bundled in this repo. To use it first [install Docker](https://docs.docker.com/engine/installation/) and stop any running Blockstack applications (`blockstack-browser` or `blockstack api`) then:
+First follow the above steps to setup the `blockstack-todo` application.
+
+The `blockstack-todo` is easiest to develop against a [`regtest`](https://bitcoin.org/en/glossary/regression-test-mode) bitcoin environment. There are a [couple of ways](https://github.com/blockstack/blockstack-core/tree/master/integration_tests#getting-started-with-docker) to setup the environment, but the easiest is through the [`docker`](https://www.docker.com/what-docker) setup. To use it first [install Docker](https://docs.docker.com/engine/installation/) and `docker-compose` (comes with the `docker` install on MacOS and Windows, but is a separate install on linux: `apt-get install docker-compose`)
+
+To get started make sure you stop any running Blockstack applications:
+
+- On MacOS: Exit the Blockstack App running in the menu bar. If you were using the CLI you will also need to run `blockstack api stop`
+- On Windows: Exit the Blockstack App and stop any running containers.
+- On Linux: Stop any containers running the browser or API and if you were using the CLI run `blockstack api stop`
+
+Then you are ready to start up the test environment:
 
 ```bash
 $ docker-compose up -d
 ```
 
-This brings up a `blockstack api` node that is backed by a `bitcoind` instance running `regtest` and a `blockstack-core` node built from the test chain. It also brings up a `blockstack-browser` and `cors-proxy` to enable the UI. The easiest way to work with this setup is in Incognito mode in your browser. Once the images have been pulled down and the containers are started you can open `http://localhost:8888`. Choose the `Advanced Mode` setup and enter the API Password as `blockstack_integration_test_api_password`. Then you can create a name.
+The first time you run this command it will download the current stable docker images for [browser](https://quay.io/repository/blockstack/blockstack-browser) (~380MB) and the [integration test framework](https://quay.io/repository/blockstack/integrationtests) (~380MB). This may take a while depending on your internet connection.
 
-After that, start your `blockstack-todo` application with the dev instructions above and open `http://locahost:8080`. Click the `Login` button. If you do not have the protocol handler installed it will redirect you to `https://blockstack.org/auth?authRequest=ey...`. Replace `https://blockstack.org` with `locahost:8888` to complete the Sign In flow.
+Once the images have downloaded containers will be created that run your regtest environment. You can see them by running `docker ps` in your terminal:
 
-Now you have a full test environment ready to build Blockstack Apps!
+- `blockstacktodos_blockstack-api_1` has:
+  * `bitcoind` node running in `regtest mode`
+  * `blockstack-core` parses the `regtest` chain to build up the name database
+  * Runs a `blockstack api` that is required for the `blockstack-browser`.
+- `blockstacktodos_blockstack-browser_1` has:
+  * The `blockstack-browser` server
+- `blockstacktodos_cors-proxy_1`:
+  * A [`CORS` proxy](https://www.npmjs.com/package/corsproxy)
+
+The easiest way to work the regtest environment is in Incognito or Private Browsing mode in your browser. Open a private browsing window to [`localhost:8888`](http://localhost:8888) and setup your browser. In the first modal be sure to click `Advanced Pairing Mode`. Input the API Password as `blockstack_integration_test_api_password`:
+
+![Add API Password](/static/api-password.png)
+
+Choose the default storage option to get started quickly.
+
+> Optional:
+
+> While not necessary you may want to register a name in the regtest environment. There are bitcoins in the wallet associated with the `blockstack api`. To transfer them to the browser wallet for use navigate to the wallet tab and copy the address. I should look something like `19WWRiJwkEcqX7HsWUSDFfi8zpTRoMMfx1`.
+
+> Then open a new tab to [`localhost:8888/wallet/send-core`](http://localhost:8888/wallet/send-core) and input the browser wallet address and `blockstack_integration_test_api_password` into the respective fields. Click send and wait for the modals to indicate that the transaction has been processed.
+
+> You will see the balance in your browser wallet and can use that to purchase names.
+
+After that, make sure you have started your `blockstack-todo` application with the dev instructions in the first section. Open [`locahost:8080`](http://localhost:8080) and click the `Login` button. You will be redirected to a site on `blockstack.org` with a long auth string on the end:
+
+```
+https://blockstack.org/auth?authRequest=eyJ0eXAiOiJKV1QiLCJhbGciOi...
+```
+
+Edit the url to replace `https://blockstack.org` with `locahost:8888`:
+
+```
+locahost:8888/auth?authRequest=eyJ0eXAiOiJKV1QiLCJhbGciOi...
+```
+
+This will redirect you back to the browser to complete the signin flow. Now you have a full test environment ready to build Blockstack Apps.
