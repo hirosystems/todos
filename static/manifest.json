@@ -1,9 +1,9 @@
 {
   "name": "Todo App",
-  "start_url": "https://blockstack-todo-app.netlify.com/",
+  "start_url": "http://blockstack-todos.appartisan.com",
   "description": "A simple todo app build on blockstack",
   "icons": [{
-    "src": "https://vuejs.org/images/logo.png",
+    "src": "http://blockstack-todos.appartisan.com/logo.png",
     "sizes": "400x400",
     "type": "image/png"
   }]
