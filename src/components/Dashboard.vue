@@ -3,8 +3,19 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
-          <h1 class="page-header">Blockstack Todo App <small>for {{ user.givenName }} {{  user.familyName }} (<a href="#" @click.prevent="signOut">Sign Out</a>)</small></h1>
+          <h1 class="page-header">Blockstack Todo App
+            <img :src="user.avatarUrl() ? user.avatarUrl() : '/avatar-placeholder.png'" class="avatar">
+            <small><span class="sign-out">(<a href="#" @click.prevent="signOut">Sign Out</a>)</span></small>
+          </h1>
+          <h2 class="user-info">
+            <small>
+              {{ user.name() ? user.name() : 'Nameless Person'}}'s Todos
+            </small>
+            <small class="pull-right">
+            {{ user.username ? user.username : user.identityAddress }}
+            </small>
 
+          </h2>
           <form @submit.prevent="addTodo" :disabled="! todo">
             <div class="input-group">
               <input v-model="todo" type="text" class="form-control" placeholder="Write a todo..." autofocus>

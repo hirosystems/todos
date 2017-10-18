@@ -9,14 +9,16 @@ html, body, #app {
   height: 100%;
 }
 
-.btn {
-  &.btn-default {
-    color: $purple
-  }
+.avatar {
+  width: 30px;
+  float: right;
+  border-radius: 2px;
 }
 
-.list-group-item {
-  color: $purple;
+.btn {
+  &.btn-default {
+    color: $purple-110
+  }
 }
 
 .creds {
@@ -24,4 +26,24 @@ html, body, #app {
   bottom: 5px;
   right: 5px;
   text-align: right;
+}
+
+.list-group-item {
+  color: $purple-100;
+}
+
+.page-header {
+  margin-bottom: 0px;
+}
+
+.sign-out {
+  float: right;
+  padding-top:8px;
+  padding-right:10px;
+  font-size: 12px;
+}
+
+.user-info {
+  margin-top: 5px;
+  margin-bottom: 30px
 }

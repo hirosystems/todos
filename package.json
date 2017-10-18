@@ -1,6 +1,6 @@
 {
   "name": "bs-todo",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "A decentralized Todo app built on Blockstack",
   "author": "Michael Stivala <michaelstivala@me.com>",
   "private": true,

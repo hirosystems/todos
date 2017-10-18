@@ -4,8 +4,7 @@
     <dashboard v-if="user" :user="user"></dashboard>
 
     <small class="creds">
-      Hosted by <a href="https://netlify.com" target="_blank">Netlify</a><br/>
-      Source code on <a href="https://github.com/michaelstivala/blockstack-todo" target="_blank">Github</a>
+      Source code on <a href="https://github.com/blockstack/blockstack-todos" target="_blank">Github</a>
     </small>
   </div>
 </template>
@@ -21,7 +20,9 @@ export default {
   mounted () {
     const blockstack = this.blockstack
     if (blockstack.isUserSignedIn()) {
-      this.user = blockstack.loadUserData().profile
+      this.userData = blockstack.loadUserData()
+      this.user = new blockstack.Person(this.userData.profile)
+      this.user.username = this.userData.username
     } else if (blockstack.isSignInPending()) {
       blockstack.handlePendingSignIn('http://localhost:6270/v1/names/')
       .then((userData) => {
