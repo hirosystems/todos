@@ -52,7 +52,8 @@ export default {
     todos: {
       handler: function (todos) {
         const blockstack = this.blockstack
-        return blockstack.putFile(STORAGE_FILE, JSON.stringify(todos))
+        const encrypt = true
+        return blockstack.putFile(STORAGE_FILE, JSON.stringify(todos), encrypt)
       },
       deep: true
     }
@@ -75,7 +76,8 @@ export default {
 
     fetchData () {
       const blockstack = this.blockstack
-      blockstack.getFile(STORAGE_FILE)
+      const decrypt = true
+      blockstack.getFile(STORAGE_FILE, decrypt)
       .then((todosText) => {
         var todos = JSON.parse(todosText || '[]')
         todos.forEach(function (todo, index) {
