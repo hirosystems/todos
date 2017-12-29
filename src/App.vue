@@ -24,7 +24,7 @@ export default {
       this.user = new blockstack.Person(this.userData.profile)
       this.user.username = this.userData.username
     } else if (blockstack.isSignInPending()) {
-      blockstack.handlePendingSignIn('http://localhost:6270/v1/names/')
+      blockstack.handlePendingSignIn()
       .then((userData) => {
         window.location = window.location.origin
       })
