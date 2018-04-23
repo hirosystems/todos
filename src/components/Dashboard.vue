@@ -12,7 +12,12 @@
               {{ user.name() ? user.name() : 'Nameless Person'}}'s Todos
             </small>
             <small class="pull-right">
-            {{ user.username ? user.username : user.identityAddress }}
+              <span v-if="todos.length > 0" class="glyphicon glyphicon-star" aria-hidden="true"></span>
+              <span v-else="todos.length > 0" class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+              {{todos.length}}
+              <span v-if="todos.length > 0" class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+              <span v-else="todos.length > 0" class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+              {{ user.username ? user.username : user.identityAddress }}
             </small>
 
           </h2>
