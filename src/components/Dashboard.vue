@@ -25,6 +25,11 @@
             </div>
           </form>
 
+          {{ this.loading ? 'LOADING' : 'not loading...'}}
+          <br></br>
+          <br></br>
+          <span v-if="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+
           <ul class="list-group">
             <li v-for="todo in todos"
               class="list-group-item"
@@ -56,6 +61,7 @@ export default {
       blockstack: window.blockstack,
       todos: [],
       todo: '',
+      loading: true,
       uidCount: 0
     }
   },
@@ -96,6 +102,7 @@ export default {
         })
         this.uidCount = todos.length
         this.todos = todos
+        this.loading = false
       })
     },
 
