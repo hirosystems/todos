@@ -25,9 +25,6 @@
             </div>
           </form>
 
-          {{ this.loading ? 'LOADING' : 'not loading...'}}
-          <br></br>
-          <br></br>
           <span v-if="loading" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
 
           <ul class="list-group">
