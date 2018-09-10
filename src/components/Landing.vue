@@ -20,7 +20,8 @@ export default {
   methods: {
     signIn () {
       const blockstack = this.blockstack
-      blockstack.redirectToSignIn()
+      const userSession = new blockstack.UserSession()
+      userSession.redirectToSignIn()
     }
   }
 }

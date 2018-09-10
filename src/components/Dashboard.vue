@@ -63,9 +63,10 @@ export default {
     todos: {
       handler: function (todos) {
         const blockstack = this.blockstack
+        const userSession = new blockstack.UserSession()
 
         // encryption is now enabled by default
-        return blockstack.putFile(STORAGE_FILE, JSON.stringify(todos))
+        return userSession.putFile(STORAGE_FILE, JSON.stringify(todos))
       },
       deep: true
     }
@@ -88,7 +89,8 @@ export default {
 
     fetchData () {
       const blockstack = this.blockstack
-      blockstack.getFile(STORAGE_FILE) // decryption is enabled by default
+      const userSession = new blockstack.UserSession()
+      userSession.getFile(STORAGE_FILE) // decryption is enabled by default
       .then((todosText) => {
         var todos = JSON.parse(todosText || '[]')
         todos.forEach(function (todo, index) {
@@ -100,7 +102,9 @@ export default {
     },
 
     signOut () {
-      this.blockstack.signUserOut(window.location.href)
+      const userSession = new this.blockstack.UserSession()
+      userSession.signUserOut()
+      window.location = '/'
     }
   }
 }
