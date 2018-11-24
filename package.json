@@ -1,6 +1,6 @@
 {
   "name": "bs-todo",
-  "version": "5.0.2",
+  "version": "6.0.0",
   "description": "A decentralized Todo app built on Blockstack",
   "author": "Michael Stivala <michaelstivala@me.com>",
   "private": true,
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.16.1",
-    "blockstack": "18.0.4",
+    "blockstack": "19.0.0-alpha.3",
     "bootstrap-sass": "^3.3.7",
     "node-sass": "^4.9.2",
     "sass-loader": "^6.0.5",
