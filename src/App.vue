@@ -1,42 +1,11 @@
 <template>
-  <div id="app">
-    <landing v-if="! blockstack.isUserSignedIn()"></landing>
-    <dashboard v-if="user" :user="user"></dashboard>
-
-    <small class="creds">
-      Source code on <a href="https://github.com/blockstack/blockstack-todos" target="_blank">Github</a>
-    </small>
-  </div>
+  <router-view />
 </template>
 
 <script>
-
-import Landing from './components/Landing.vue'
-import Dashboard from './components/Dashboard.vue'
-
 export default {
-  name: 'app',
-  components: {Landing, Dashboard},
-  mounted () {
-    const blockstack = this.blockstack
-    if (blockstack.isUserSignedIn()) {
-      this.userData = blockstack.loadUserData()
-      this.user = new blockstack.Person(this.userData.profile)
-      this.user.username = this.userData.username
-    } else if (blockstack.isSignInPending()) {
-      blockstack.handlePendingSignIn()
-      .then((userData) => {
-        window.location = window.location.origin
-      })
-    }
-  },
-  data () {
-    return {
-      blockstack: window.blockstack,
-      user: null
-    }
-  }
+  name: 'App'
 }
 </script>
 
-<style src="./assets/sass/app.scss" lang="scss"></style>
+<style src="@/assets/sass/app.scss" lang="scss"></style>

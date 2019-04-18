@@ -3,24 +3,22 @@
 > A simple Vue.js Todo app built for the decentralized web.
 
 ## Build Setup
-
 ``` bash
 # install dependencies
 # previously we used yarn install. This is no longer supported.
 npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
+# Compiles and hot-reloads for development
+npm run serve
 
-# build for production with minification
+# Compiles and minifies for production
 npm run build
+```
+## Linting
 
-# build for production and view the bundle analyzer report
-npm run build --report
-
+``` bash
+# Lints and fixes files
+npm run lint
 ```
 
 For detailed explanation on how this app works, checkout the [guide](https://blockstack.org/tutorials/todo-list/).
-
-
-
