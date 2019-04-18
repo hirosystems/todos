@@ -1,9 +1,9 @@
 <template>
-  <div class="hello">
+  <div class="dashboard">
     <div class="container">
-      <div class="row">
+      <div class="row justify-content-md-center">
         <div class="col-md-8 col-md-offset-2">
-          <h1 class="page-header">Blockstack Todo App
+          <h1 class="page-header align-middle">Blockstack Todo App
             <img :src="user.avatarUrl() ? user.avatarUrl() : '/avatar-placeholder.png'" class="avatar">
             <small><span class="sign-out">(<a href="#" @click.prevent="signOut">Sign Out</a>)</span></small>
           </h1>
@@ -11,7 +11,7 @@
             <small>
               {{ user.name() ? user.name() : 'Nameless Person'}}'s Todos
             </small>
-            <small class="pull-right">
+            <small class="float-right">
             {{ user.username ? user.username : user.identityAddress }}
             </small>
 
@@ -20,7 +20,7 @@
             <div class="input-group">
               <input v-model="todo" type="text" class="form-control" placeholder="Write a todo..." autofocus>
               <span class="input-group-btn">
-                <button class="btn btn-default" type="submit" :disabled="! todo">Add</button>
+                <button class="btn btn-default bg-light" type="submit" :disabled="! todo">Add</button>
               </span>
             </div>
           </form>
@@ -34,7 +34,7 @@
                 <input type="checkbox" v-model="todo.completed">{{ todo.text }}
               </label>
               <a @click.prevent="todos.splice(todos.indexOf(todo), 1)"
-                class="delete pull-right"
+                class="delete float-right"
                 href="#">X</a>
             </li>
           </ul>
@@ -53,6 +53,7 @@ export default {
   props: ['user'],
   data () {
     return {
+      UserSession: null,
       blockstack: window.blockstack,
       todos: [],
       todo: '',
@@ -62,15 +63,16 @@ export default {
   watch: {
     todos: {
       handler: function (todos) {
-        const blockstack = this.blockstack
+        const UserSession = this.UserSession
 
         // encryption is now enabled by default
-        return blockstack.putFile(STORAGE_FILE, JSON.stringify(todos))
+        return UserSession.putFile(STORAGE_FILE, JSON.stringify(todos))
       },
       deep: true
     }
   },
   mounted () {
+    this.UserSession = new this.blockstack.UserSession()
     this.fetchData()
   },
   methods: {
@@ -87,20 +89,20 @@ export default {
     },
 
     fetchData () {
-      const blockstack = this.blockstack
-      blockstack.getFile(STORAGE_FILE) // decryption is enabled by default
-      .then((todosText) => {
-        var todos = JSON.parse(todosText || '[]')
-        todos.forEach(function (todo, index) {
-          todo.id = index
+      const UserSession = this.UserSession
+      UserSession.getFile(STORAGE_FILE) // decryption is enabled by default
+        .then((todosText) => {
+          var todos = JSON.parse(todosText || '[]')
+          todos.forEach(function (todo, index) {
+            todo.id = index
+          })
+          this.uidCount = todos.length
+          this.todos = todos
         })
-        this.uidCount = todos.length
-        this.todos = todos
-      })
     },
 
     signOut () {
-      this.blockstack.signUserOut(window.location.href)
+      this.UserSession.signUserOut(window.location.href)
     }
   }
 }
@@ -108,6 +110,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.dashboard {
+  padding-top: 2rem;
+}
 
 input::placeholder {
   color: grey;

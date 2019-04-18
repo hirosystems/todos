@@ -141,25 +141,20 @@ $brand-warning: #cbb956;
 $brand-danger: #bf5329;
 
 // 9. Fonts
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$font-family-sans-serif: 'Source Code Pro',monospace;
-$font-size-base: 12px;
-$line-height-base: 1.6;
-$text-color: #fff;
+$font-family-sans-serif: 'Source Code Pro', monospace;
+$body-color: #fff;
+$link-color: $body-color;
 
 // 10. Components
-$border-radius-base: 0px !default;
+$border-radius: 0px !default;
 
 // 12. Buttons
-$btn-default-color: $text-color;
+$btn-default-color: $body-bg;
 
 // 13. Forms
-$input-border: lighten($text-color, 40%);
-$input-border-focus: lighten($brand-primary, 25%);
-$input-color-placeholder: lighten($text-color, 30%);
+$input-border-color: lighten($body-color, 40%);
+$input-focus-border-color: lighten($brand-primary, 25%);
+$input-placeholder-color: lighten($body-color, 30%);
 
 // 16. Navbar
-$navbar-default-bg: #fff;
-
-// 37. Misc
-$panel-default-heading-bg: #fff;
+$navbar-light-color: #fff;
