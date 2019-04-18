@@ -19,7 +19,8 @@ export default {
 
   methods: {
     signIn () {
-      const UserSession = new this.blockstack.UserSession(['store_write', 'publish_data'])
+      const appConfig = new this.blockstack.AppConfig(['store_write', 'publish_data'])
+      const UserSession = new this.blockstack.UserSession({ appConfig: appConfig })
       UserSession.redirectToSignIn()
     }
   }
