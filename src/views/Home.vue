@@ -12,19 +12,19 @@
 <script>
 import Landing from '@/components/Landing.vue'
 import Dashboard from '@/components/Dashboard.vue'
+import { Person } from 'blockstack'
+import { userSession } from '../userSession'
 
 export default {
   name: 'Home',
   components: { Landing, Dashboard },
   created () {
-    this.userSession = new this.blockstack.UserSession()
-    window.userSession = this.userSession
+    this.userSession = userSession
   },
   mounted () {
-    const userSession = this.userSession
     if (userSession.isUserSignedIn()) {
       this.userData = userSession.loadUserData()
-      this.user = new this.blockstack.Person(this.userData.profile)
+      this.user = new Person(this.userData.profile)
       this.user.username = this.userData.username
     } else if (userSession.isSignInPending()) {
       userSession.handlePendingSignIn()
@@ -35,7 +35,6 @@ export default {
   },
   data () {
     return {
-      blockstack: window.blockstack,
       userSession: null,
       user: null
     }

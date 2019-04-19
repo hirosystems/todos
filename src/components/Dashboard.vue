@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import userSession from '../userSession';
+import { userSession } from '../userSession'
 var STORAGE_FILE = 'todos.json'
 
 export default {
@@ -62,7 +62,6 @@ export default {
   watch: {
     todos: {
       handler: function (todos) {
-
         // encryption is now enabled by default
         return userSession.putFile(STORAGE_FILE, JSON.stringify(todos))
       },

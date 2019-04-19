@@ -13,12 +13,6 @@ import { userSession } from '../userSession'
 
 export default {
   name: 'landing',
-  data () {
-    return {
-      blockstack: window.blockstack
-    }
-  },
-
   methods: {
     signIn () {
       userSession.redirectToSignIn()
