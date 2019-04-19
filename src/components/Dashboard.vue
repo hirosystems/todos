@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import userSession from '../userSession';
 var STORAGE_FILE = 'todos.json'
 
 export default {
@@ -53,8 +54,6 @@ export default {
   props: ['user'],
   data () {
     return {
-      userSession: null,
-      blockstack: window.blockstack,
       todos: [],
       todo: '',
       uidCount: 0
@@ -63,7 +62,6 @@ export default {
   watch: {
     todos: {
       handler: function (todos) {
-        const userSession = this.userSession
 
         // encryption is now enabled by default
         return userSession.putFile(STORAGE_FILE, JSON.stringify(todos))
@@ -72,7 +70,6 @@ export default {
     }
   },
   mounted () {
-    this.userSession = new this.blockstack.UserSession()
     this.fetchData()
   },
   methods: {
@@ -89,7 +86,6 @@ export default {
     },
 
     fetchData () {
-      const userSession = this.userSession
       userSession.getFile(STORAGE_FILE) // decryption is enabled by default
         .then((todosText) => {
           var todos = JSON.parse(todosText || '[]')
@@ -102,7 +98,7 @@ export default {
     },
 
     signOut () {
-      this.userSession.signUserOut(window.location.href)
+      userSession.signUserOut(window.location.href)
     }
   }
 }

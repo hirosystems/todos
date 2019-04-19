@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { userSession } from '../userSession'
+
 export default {
   name: 'landing',
   data () {
@@ -19,8 +21,6 @@ export default {
 
   methods: {
     signIn () {
-      const appConfig = new this.blockstack.AppConfig(['store_write', 'publish_data'])
-      const userSession = new this.blockstack.UserSession({ appConfig: appConfig })
       userSession.redirectToSignIn()
     }
   }
