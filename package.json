@@ -1,6 +1,6 @@
 {
   "name": "bs-todo",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "A decentralized Todo app built on Blockstack",
   "author": "Michael Stivala <michaelstivala@me.com> (https://michaelstivala.com/)",
   "contributors": [
@@ -20,7 +20,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -33,9 +34,13 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",
     "@vue/cli-plugin-eslint": "^3.6.0",
+    "@vue/cli-plugin-unit-jest": "^3.6.0",
     "@vue/cli-service": "^3.6.0",
     "@vue/eslint-config-standard": "^4.0.0",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.9.0",
