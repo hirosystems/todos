@@ -14,11 +14,14 @@ npm run serve
 # Compiles and minifies for production
 npm run build
 ```
-## Linting
+## Linting & Unit test
 
 ``` bash
 # Lints and fixes files
 npm run lint
+
+# Run your unit tests
+npm run test:unit
 ```
 
 For detailed explanation on how this app works, checkout the [guide](https://blockstack.org/tutorials/todo-list/).
