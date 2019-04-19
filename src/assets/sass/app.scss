@@ -3,7 +3,7 @@
 
 // Bootstrap
 @import "variables";
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "node_modules/bootstrap/scss/bootstrap.scss";
 
 html, body, #app {
   height: 100%;
@@ -34,16 +34,21 @@ html, body, #app {
 
 .page-header {
   margin-bottom: 0px;
+  font-size: 1.8rem;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $gray-100;
 }
 
 .sign-out {
   float: right;
-  padding-top:8px;
-  padding-right:10px;
+  padding-top: 8px;
+  padding-right: 10px;
   font-size: 12px;
 }
 
 .user-info {
-  margin-top: 5px;
-  margin-bottom: 30px
+  margin-top: 15px;
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+  color: $gray-400;
 }

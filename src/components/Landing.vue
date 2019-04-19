@@ -3,7 +3,7 @@
     <div>
       <h1>Blockstack Todo</h1>
       <p>A decentralized Todo app built on <a href="https://blockstack.org" target="_blank">Blockstack</a></p>
-      <button class="btn btn-default" @click.prevent="signIn">Sign In With Blockstack</button>
+      <button class="btn btn-default bg-white" @click.prevent="signIn">Sign In With Blockstack</button>
     </div>
   </div>
 </template>
@@ -19,8 +19,9 @@ export default {
 
   methods: {
     signIn () {
-      const blockstack = this.blockstack
-      blockstack.redirectToSignIn()
+      const appConfig = new this.blockstack.AppConfig(['store_write', 'publish_data'])
+      const UserSession = new this.blockstack.UserSession({ appConfig: appConfig })
+      UserSession.redirectToSignIn()
     }
   }
 }
