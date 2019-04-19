@@ -53,7 +53,7 @@ export default {
   props: ['user'],
   data () {
     return {
-      UserSession: null,
+      userSession: null,
       blockstack: window.blockstack,
       todos: [],
       todo: '',
@@ -63,16 +63,16 @@ export default {
   watch: {
     todos: {
       handler: function (todos) {
-        const UserSession = this.UserSession
+        const userSession = this.userSession
 
         // encryption is now enabled by default
-        return UserSession.putFile(STORAGE_FILE, JSON.stringify(todos))
+        return userSession.putFile(STORAGE_FILE, JSON.stringify(todos))
       },
       deep: true
     }
   },
   mounted () {
-    this.UserSession = new this.blockstack.UserSession()
+    this.userSession = new this.blockstack.UserSession()
     this.fetchData()
   },
   methods: {
@@ -89,8 +89,8 @@ export default {
     },
 
     fetchData () {
-      const UserSession = this.UserSession
-      UserSession.getFile(STORAGE_FILE) // decryption is enabled by default
+      const userSession = this.userSession
+      userSession.getFile(STORAGE_FILE) // decryption is enabled by default
         .then((todosText) => {
           var todos = JSON.parse(todosText || '[]')
           todos.forEach(function (todo, index) {
@@ -102,7 +102,7 @@ export default {
     },
 
     signOut () {
-      this.UserSession.signUserOut(window.location.href)
+      this.userSession.signUserOut(window.location.href)
     }
   }
 }

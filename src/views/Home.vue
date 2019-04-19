@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <landing v-if="! UserSession.isUserSignedIn()"></landing>
+    <landing v-if="! userSession.isUserSignedIn()"></landing>
     <dashboard v-if="user" :user="user"></dashboard>
 
     <small class="creds">
@@ -17,16 +17,17 @@ export default {
   name: 'Home',
   components: { Landing, Dashboard },
   created () {
-    this.UserSession = new this.blockstack.UserSession()
+    this.userSession = new this.blockstack.UserSession()
+    window.userSession = this.userSession
   },
   mounted () {
-    const UserSession = this.UserSession
-    if (UserSession.isUserSignedIn()) {
-      this.userData = UserSession.loadUserData()
+    const userSession = this.userSession
+    if (userSession.isUserSignedIn()) {
+      this.userData = userSession.loadUserData()
       this.user = new this.blockstack.Person(this.userData.profile)
       this.user.username = this.userData.username
-    } else if (UserSession.isSignInPending()) {
-      UserSession.handlePendingSignIn()
+    } else if (userSession.isSignInPending()) {
+      userSession.handlePendingSignIn()
         .then((userData) => {
           window.location = window.location.origin
         })
