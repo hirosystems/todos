@@ -22,8 +22,10 @@ describe('Landing.vue', () => {
     const wrapper = mount(Landing)
     expect(wrapper.contains('button')).toBe(true)
   })
+})
 
-  it('sign in button should call method signIn()', async () => {
+describe('Sign in button', () => {
+  it('should call method signIn() when clicked', async () => {
     const wrapper = shallowMount(Landing, mock)
     await wrapper.find('button').trigger('click')
     expect(mock.methods.signIn).toHaveBeenCalled()
