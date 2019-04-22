@@ -36,7 +36,7 @@ jobs:
     docker:
       - image: circleci/node:10.15.1
     steps:
-      - run: npm install'
+      - run: npm install
       - run: npm run test:coverage
       - store_artifacts:
         path: coverage
