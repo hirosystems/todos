@@ -18,7 +18,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-  test-unit:
+  unit:
     working_directory: ~/project
     docker:
       - image: circleci/node:10.15.1
@@ -32,24 +32,14 @@ jobs:
         - store_artifacts:
             path: test-results
             prefix: tests
-        - store_test_results:
-            path: test-results
-  test-coverage:
-    working_directory: ~/project
-    docker:
-      - image: circleci/node:10.15.1
-    steps:
-        - checkout
-        - run: npm install
-        - run: npm install --save-dev jest-junit
-        - run: npm run test:coverage
         - store_artifacts:
             path: coverage
             prefix: coverage
+        - store_test_results:
+            path: test-results
 workflows:
     version: 2
     build_and_test:
       jobs:
         - build
-        - test-unit
-        - test-coverage
+        - unit

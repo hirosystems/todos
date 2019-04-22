@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="4" failures="0" time="2.263">
-  <testsuite name="Landing.vue" errors="0" failures="0" skipped="0" timestamp="2019-04-22T17:56:29" time="1.076" tests="4">
-    <testcase classname="Landing.vue should contain h1 element" name="Landing.vue should contain h1 element" time="0.034">
+<testsuites name="jest tests" tests="4" failures="0" time="4.104">
+  <testsuite name="Landing.vue" errors="0" failures="0" skipped="0" timestamp="2019-04-22T18:10:38" time="1.609" tests="4">
+    <testcase classname="Landing.vue should contain h1 element" name="Landing.vue should contain h1 element" time="0.036">
     </testcase>
     <testcase classname="Landing.vue should contain p element" name="Landing.vue should contain p element" time="0.004">
     </testcase>
-    <testcase classname="Landing.vue should contain button element" name="Landing.vue should contain button element" time="0.004">
+    <testcase classname="Landing.vue should contain button element" name="Landing.vue should contain button element" time="0.003">
     </testcase>
-    <testcase classname="Sign in button should call method signIn() when clicked" name="Sign in button should call method signIn() when clicked" time="0.006">
+    <testcase classname="Sign in button should call method signIn() when clicked" name="Sign in button should call method signIn() when clicked" time="0.007">
     </testcase>
   </testsuite>
 </testsuites>
