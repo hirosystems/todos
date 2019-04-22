@@ -21,12 +21,12 @@ jobs:
       - run:
           name: unit test
           command: npm run test:unit
+      - store_artifacts:
+          path: test-results
+          prefix: unit-test
       - run:
           name: code-coverage
           command: npm run test:coverage
-      - store_artifacts:
-          path: test-results
-          prefix: tests
       - store_artifacts:
           path: coverage
           prefix: coverage
