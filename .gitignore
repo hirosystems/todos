@@ -3,8 +3,8 @@ node_modules
 /dist
 
 # Get rid of .empty files
-!.nyc_output/.empty
-!coverage/.empty
+.nyc_output/.empty
+coverage/.empty
 !.empty
 
 # local env files
