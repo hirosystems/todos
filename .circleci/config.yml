@@ -21,18 +21,12 @@ jobs:
   test-unit:
     docker:
       - image: circleci/node:10.15.1
+    environment:
+      JEST_JUNIT_OUTPUT: "test-results/jest/results.xml"
     steps:
-      - run:
-        name: Install dependencies
-        command: 'npm install'
-      - run:
-        name: Install JUnit coverage reporter
-        command: npm install --save-dev jest-junit
-      - run:
-          name: unit test
-          command: npm run test:unit --ci --runInBand --reporters=default --reporters=jest-junit
-          environment:
-            JEST_JUNIT_OUTPUT: "test-results/jest/results.xml"
+      - run: npm install
+      - run: npm install --save-dev jest-junit
+      - run: npm run test:unit --ci --runInBand --reporters=default --reporters=jest-junit
       - store_artifacts:
         path: test-results
         prefix: tests
@@ -42,12 +36,8 @@ jobs:
     docker:
       - image: circleci/node:10.15.1
     steps:
-      - run:
-        name: Install dependencies
-        command: 'npm install'
-      - run:
-        name: code-coverage
-        command: npm run test:coverage
+      - run: npm install'
+      - run: npm run test:coverage
       - store_artifacts:
         path: coverage
         prefix: coverage
