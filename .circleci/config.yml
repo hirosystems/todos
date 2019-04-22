@@ -21,19 +21,32 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-      - run:
-          name: unit test
-          command: npm run test:unit --ci --runInBand --reporters=default --reporters=jest-junit
-          environment:
-            JEST_JUNIT_OUTPUT: "test-results/jest/results.xml"
-      - store_artifacts:
-          path: test-results
-          prefix: unit-test
-      - run:
-          name: code-coverage
-          command: npm run test:coverage
-      - store_artifacts:
-          path: coverage
-          prefix: coverage
-      - store_test_results:
-          path: test-results
+    test-unit:
+      docker:
+        - image: circleci/node:10.15.1
+        - run:
+            name: unit test
+            command: npm run test:unit --ci --runInBand --reporters=default --reporters=jest-junit
+            environment:
+              JEST_JUNIT_OUTPUT: "test-results/jest/results.xml"
+        - store_artifacts:
+            path: test-results
+            prefix: tests
+        - store_test_results:
+            path: test-results
+    test-coverage:
+      docker:
+        - image: circleci/node:10.15.1
+        - run:
+            name: code-coverage
+            command: npm run test:coverage
+        - store_artifacts:
+            path: coverage
+            prefix: coverage
+workflows:
+    version: 2
+    build_and_test:
+      jobs:
+        - build
+        - test-unit
+        - test-coverage
