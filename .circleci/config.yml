@@ -24,23 +24,23 @@ jobs:
     environment:
       JEST_JUNIT_OUTPUT: "test-results/jest/results.xml"
     steps:
-      - run: npm install
-      - run: npm install --save-dev jest-junit
-      - run: npm run test:unit --ci --runInBand --reporters=default --reporters=jest-junit
-      - store_artifacts:
-        path: test-results
-        prefix: tests
-      - store_test_results:
-        path: test-results
+        - run: npm install
+        - run: npm install --save-dev jest-junit
+        - run: npm run test:unit --ci --runInBand --reporters=default --reporters=jest-junit
+        - store_artifacts:
+            path: test-results
+            prefix: tests
+        - store_test_results:
+            path: test-results
   test-coverage:
     docker:
       - image: circleci/node:10.15.1
     steps:
-      - run: npm install
-      - run: npm run test:coverage
-      - store_artifacts:
-        path: coverage
-        prefix: coverage
+        - run: npm install
+        - run: npm run test:coverage
+        - store_artifacts:
+            path: coverage
+            prefix: coverage
 workflows:
     version: 2
     build_and_test:
