@@ -14,6 +14,14 @@ jobs:
       - run:
           name: install-npm-wee
           command: npm install
+      - run:
+          name: Install JUnit coverage reporter
+          command: yarn add --dev jest-junit
+      - run:
+          name: Run tests with JUnit as reporter
+          command: jest --ci --runInBand --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT: "test-results/jest/results.xml"
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:

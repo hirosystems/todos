@@ -26,5 +26,9 @@ module.exports = {
   watchPlugins: [
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname'
+  ],
+  reporters: [
+    'default',
+    'jest-junit'
   ]
 }
