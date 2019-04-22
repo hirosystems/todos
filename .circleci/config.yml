@@ -1,0 +1,45 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/project
+    docker:
+      - image: circleci/node:10.15.1
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: 'npm install'
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-npm-wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+  unit:
+    working_directory: ~/project
+    docker:
+      - image: circleci/node:10.15.1
+    environment:
+      JEST_JUNIT_OUTPUT: "test-results/jest/results.xml"
+    steps:
+        - checkout
+        - run: npm install
+        - run: npm install --save-dev jest-junit
+        - run: npm run test:unit --ci --runInBand --reporters=default --reporters=jest-junit
+        - store_artifacts:
+            path: test-results
+            prefix: tests
+        - store_artifacts:
+            path: coverage
+            prefix: coverage
+        - store_test_results:
+            path: test-results
+workflows:
+    version: 2
+    build_and_test:
+      jobs:
+        - build
+        - unit
