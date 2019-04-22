@@ -41,6 +41,7 @@ jobs:
     steps:
         - checkout
         - run: npm install
+        - run: npm install --save-dev jest-junit
         - run: npm run test:coverage
         - store_artifacts:
             path: coverage
