@@ -2,6 +2,9 @@
 node_modules
 /dist
 
+# Coverage outputs
+coverage/*
+
 # Get rid of .empty files
 .nyc_output/.empty
 coverage/.empty
