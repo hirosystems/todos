@@ -19,11 +19,13 @@ jobs:
           paths:
             - ./node_modules
   test-unit:
+    working_directory: ~/project
     docker:
       - image: circleci/node:10.15.1
     environment:
       JEST_JUNIT_OUTPUT: "test-results/jest/results.xml"
     steps:
+        - checkout
         - run: npm install
         - run: npm install --save-dev jest-junit
         - run: npm run test:unit --ci --runInBand --reporters=default --reporters=jest-junit
@@ -33,9 +35,11 @@ jobs:
         - store_test_results:
             path: test-results
   test-coverage:
+    working_directory: ~/project
     docker:
       - image: circleci/node:10.15.1
     steps:
+        - checkout
         - run: npm install
         - run: npm run test:coverage
         - store_artifacts:
