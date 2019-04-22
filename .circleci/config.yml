@@ -14,9 +14,6 @@ jobs:
       - run:
           name: install-npm-wee
           command: npm install
-      - run:
-          name: Install JUnit coverage reporter
-          command: npm install --save-dev jest-junit
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
@@ -25,6 +22,12 @@ jobs:
     docker:
       - image: circleci/node:10.15.1
     steps:
+      - run:
+        name: Install dependencies
+        command: 'npm install'
+      - run:
+        name: Install JUnit coverage reporter
+        command: npm install --save-dev jest-junit
       - run:
           name: unit test
           command: npm run test:unit --ci --runInBand --reporters=default --reporters=jest-junit
@@ -39,6 +42,9 @@ jobs:
     docker:
       - image: circleci/node:10.15.1
     steps:
+      - run:
+        name: Install dependencies
+        command: 'npm install'
       - run:
         name: code-coverage
         command: npm run test:coverage
