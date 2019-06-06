@@ -1,0 +1,13 @@
+
+.Landing {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
