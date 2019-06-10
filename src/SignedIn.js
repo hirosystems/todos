@@ -22,6 +22,7 @@ class SignedIn extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.addTask = this.addTask.bind(this)
     this.removeTask = this.removeTask.bind(this)
+    this.check = this.check.bind(this)
   }
 
   componentWillMount() {
@@ -76,7 +77,15 @@ class SignedIn extends Component {
     const task = this.state.value
     const tasks = jsonCopy(this.state.tasks)
     this.setState({value: ''})
-    tasks.push(task)
+    tasks.push([task, false])
+    this.setState({ tasks })
+    this.saveTasks(tasks)
+  }
+
+  check(e) {
+    const index = e.target.dataset.index
+    const tasks = jsonCopy(this.state.tasks)
+    tasks[index][1] = !tasks[index][1]
     this.setState({ tasks })
     this.saveTasks(tasks)
   }
@@ -86,6 +95,8 @@ class SignedIn extends Component {
     this.userSession.signUserOut()
     window.location = '/'
   }
+
+
 
   render() {
     const username = this.userSession.loadUserData().username
@@ -114,10 +125,11 @@ class SignedIn extends Component {
               </div>
             </form>
           </div>
-          <div class = "list-group list-group-flush">
+          <div className = "list-group list-group-flush">
             {this.state.tasks.map((task, i) =>
               <ul key={i}>
-                  <span class="input-group-text">{task}</span>
+                  <input type="checkbox" className="form-check-input" data-index={i} onClick={this.check} checked={task[1]? true : false}></input>
+                  <span className="input-group-text">{task[1]? <s>{task[0]}</s> : task[0]}</span>
                   <button className="btn btn-primary" data-index={i} onClick={this.removeTask}>X</button>
               </ul>
             )}
