@@ -117,7 +117,6 @@ class SignedIn extends Component {
           <div class = "list-group list-group-flush">
             {this.state.tasks.map((task, i) =>
               <ul key={i}>
-                  <input type="checkbox" onClick={this.complete}className={completed ? 'text-strike' : null}>{{task}}</input>
                   <span class="input-group-text">{task}</span>
                   <button className="btn btn-primary" data-index={i} onClick={this.removeTask}>X</button>
               </ul>
