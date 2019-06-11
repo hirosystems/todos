@@ -100,10 +100,18 @@ class SignedIn extends Component {
 
   render() {
     const username = this.userSession.loadUserData().username
-
+    const name = this.userSession.loadUserData().name
     return (
       <div className="SignedIn">
       <NavBar username={username} signOut={this.signOut}/>
+        <div class="row justify-content-md-center">
+          <h1 class="user-info">
+            <small>
+              {username}'s to-dos
+            </small>
+          </h1>
+        </div>
+        <br></br>
         <div className="row justify-content-center">
           <div
             id="addTask"
@@ -125,17 +133,26 @@ class SignedIn extends Component {
               </div>
             </form>
           </div>
-          <div className = "list-group list-group-flush">
+        </div>
+        <br></br>
+        <div className="row justify-content-center">
+          <div>
             {this.state.tasks.map((task, i) =>
               <ul key={i}>
+                <div className="row">
                   <input type="checkbox" className="form-check-input" data-index={i} onClick={this.check} checked={task[1]? true : false}></input>
-                  <span className="input-group-text">{task[1]? <s>{task[0]}</s> : task[0]}</span>
+                  <div className="col">
+                  <span className="input-group-text">
+                    {task[1]? <s>{task[0]}</s> : task[0]}
+                  </span>
+                  </div>
                   <button className="btn btn-primary" data-index={i} onClick={this.removeTask}>X</button>
+                </div>
               </ul>
             )}
           </div>
         </div>
-      </div>
+      </div> 
   
     );
   }
