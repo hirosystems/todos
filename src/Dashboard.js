@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { UserSession } from 'blockstack'
 import NavBar from './NavBar'
-import {jsonCopy} from './utils'
+import {jsonCopy, remove, add, check} from './utils'
 import { appConfig, TASKS_FILENAME } from './constants'
-import './SignedIn.css'
+import './Dashboard.css'
 
 
-class SignedIn extends Component {
+class Dashboard extends Component {
 
   constructor(props) {
     super(props)
@@ -22,7 +22,7 @@ class SignedIn extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.addTask = this.addTask.bind(this)
     this.removeTask = this.removeTask.bind(this)
-    this.check = this.check.bind(this)
+    this.checkTask = this.checkTask.bind(this)
   }
 
   componentWillMount() {
@@ -37,10 +37,6 @@ class SignedIn extends Component {
       }
     }
   }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-   }
 
   loadTasks() {
     const options = { decrypt: false }
@@ -63,29 +59,26 @@ class SignedIn extends Component {
     })
   }
 
+  handleChange(event) {
+    this.setState({value: event.target.value});
+   }
+
   removeTask(e) {
     e.preventDefault()
-    const index = e.target.dataset.index
-    const tasks = jsonCopy(this.state.tasks)
-    tasks.splice(index, 1) // remove subject at index
+    const tasks = remove(e.target.dataset.index, this.state)
     this.setState({ tasks })
     this.saveTasks(tasks)
   }
 
   addTask(e) {
     e.preventDefault()
-    const task = this.state.value
-    const tasks = jsonCopy(this.state.tasks)
-    this.setState({value: ''})
-    tasks.push([task, false])
-    this.setState({ tasks })
+    const tasks = add(this.state)
+    this.setState({value: '', tasks})
     this.saveTasks(tasks)
   }
 
-  check(e) {
-    const index = e.target.dataset.index
-    const tasks = jsonCopy(this.state.tasks)
-    tasks[index][1] = !tasks[index][1]
+  checkTask(e) {
+    const tasks = check(e.target.dataset.index, this.state)
     this.setState({ tasks })
     this.saveTasks(tasks)
   }
@@ -96,13 +89,10 @@ class SignedIn extends Component {
     window.location = '/'
   }
 
-
-
   render() {
     const username = this.userSession.loadUserData().username
-    const name = this.userSession.loadUserData().name
     return (
-      <div className="SignedIn">
+      <div className="Dashboard">
       <NavBar username={username} signOut={this.signOut}/>
         <div class="row justify-content-md-center">
           <h1 class="user-info">
@@ -140,7 +130,7 @@ class SignedIn extends Component {
             {this.state.tasks.map((task, i) =>
               <ul key={i}>
                 <div className="row">
-                  <input type="checkbox" className="form-check-input" data-index={i} onClick={this.check} checked={task[1]? true : false}></input>
+                  <input type="checkbox" className="form-check-input" data-index={i} onClick={this.checkTask} checked={task[1]? true : false}></input>
                   <div className="col">
                   <span className="input-group-text">
                     {task[1]? <s>{task[0]}</s> : task[0]}
@@ -158,4 +148,4 @@ class SignedIn extends Component {
   }
 }
 
-export default SignedIn
+export default Dashboard

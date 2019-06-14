@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import './App.css'
 import { UserSession } from 'blockstack'
-
 import Landing from './Landing'
-import SignedIn from './SignedIn'
+import Dashboard from './Dashboard'
 
 class App extends Component {
 
@@ -29,7 +28,7 @@ class App extends Component {
     return (
       <main role="main">
           {this.userSession.isUserSignedIn() ?
-            <SignedIn />
+            <Dashboard />
           :
             <Landing />
           }
