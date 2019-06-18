@@ -10,7 +10,7 @@ class Dashboard extends Component {
 
   constructor(props) {
     super(props)
-    this.userSession = new UserSession({ appConfig })
+    //this.userSession = new UserSession({ appConfig })
     this.state = {
       tasks: [],
       value: '',
@@ -40,7 +40,7 @@ class Dashboard extends Component {
 
   loadTasks() {
     const options = { decrypt: false }
-    this.userSession.getFile(TASKS_FILENAME, options)
+    this.props.userSession.getFile(TASKS_FILENAME, options)
     .then((content) => {
       if(content) {
         const tasks = JSON.parse(content)
@@ -51,7 +51,7 @@ class Dashboard extends Component {
 
   saveTasks(tasks) {
     const options = { encrypt: false }
-    this.userSession.putFile(TASKS_FILENAME, JSON.stringify(tasks), options)
+    this.props.userSession.putFile(TASKS_FILENAME, JSON.stringify(tasks), options)
     .finally(() => {
       if(window.location.search) {
         window.history.pushState(null, "", window.location.href.split("?")[0])
@@ -85,12 +85,12 @@ class Dashboard extends Component {
 
   signOut(e) {
     e.preventDefault()
-    this.userSession.signUserOut()
+    this.props.userSession.signUserOut()
     window.location = '/'
   }
 
   render() {
-    const username = this.userSession.loadUserData().username
+    const username = this.props.userSession.loadUserData().username
     return (
       <div className="Dashboard">
       <NavBar username={username} signOut={this.signOut}/>
@@ -147,5 +147,11 @@ class Dashboard extends Component {
     );
   }
 }
+
+// Made this a default prop (instead of using this.userSession) so a dummy userSession
+// can be passed in for testing purposes
+Dashboard.defaultProps = {
+  userSession: new UserSession(appConfig)
+};
 
 export default Dashboard
