@@ -1,0 +1,9 @@
+
+environment:
+  nodejs_version: 10
+install:
+- cmd: >-
+    npm install
+build_script:
+- cmd: >-
+    npm run build
