@@ -1,5 +1,21 @@
 {
-  "name": "test",
+  "name": "bs-todo",
+  "description": "A decentralized Todo app built on Blockstack",
+  "author": "Michael Stivala <michaelstivala@me.com> (https://michaelstivala.com/)",
+  "contributors": [
+    "Aaron Blankstein <aaron@blockstack.com> (https://github.com/kantai)",
+    "Larry Salibra <hello@larrysalibra.com> (https://larrysalibra.com/)",
+    "Arjun Balaji <arjunblj@gmail.com> (https://github.com/arjunblj)",
+    "Kim Hallberg <work@hallberg.kim> (https://hallberg.kim/)",
+    "Guy Lepage <guylepage3@gmail.com> (https://lepage.cc/)",
+    "Jack Zampolin (https://github.com/jackzampolin)",
+    "Moxiegirl (https://github.com/moxiegirl)",
+    "Sahana Srinivasan (https://github.com/Sahana-Srinivasan"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blockstack/blockstack-todos"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
