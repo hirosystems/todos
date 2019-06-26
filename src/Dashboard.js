@@ -133,7 +133,9 @@ class Dashboard extends Component {
                   <input type="checkbox" className="form-check-input" data-index={i} onClick={this.checkTask} checked={task[1]? true : false}></input>
                   <div className="col">
                     <span className="input-group-text">
-                      {task[1]? <s>{task[0]}</s> : task[0]} 
+                      <div className="task">
+                        {task[1]? <s>{task[0]}</s> : task[0]}
+                      </div> 
                       <div className="delete">
                         <button className="btn btn-primary" data-index={i} onClick={this.removeTask}>X</button>
                       </div>

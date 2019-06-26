@@ -37,7 +37,7 @@ const userSession = new blockstack.UserSession({
 test('renders to-do list text', () => {
   const wrapper = shallow(<Dashboard userSession={userSession} />);
   wrapper.setState({tasks: [['Create a Blockstack ID', false]]});
-  const text = wrapper.find('.input-group-text');
+  const text = wrapper.find('.task');
   expect(text.text()).toBe('Create a Blockstack ID');
 });
 
