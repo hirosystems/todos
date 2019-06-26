@@ -94,8 +94,8 @@ class Dashboard extends Component {
     return (
       <div className="Dashboard">
       <NavBar username={username} signOut={this.signOut}/>
-        <div class="row justify-content-md-center">
-          <h1 class="user-info">
+        <div className="row justify-content-md-center">
+          <h1 className="user-info">
             <small>
               {username}'s to-dos
             </small>
@@ -105,7 +105,7 @@ class Dashboard extends Component {
         <div className="row justify-content-center">
           <div
             id="addTask"
-            className="add-frame col-lg-6"
+            className="frame"
             style={{borderColor: '#f8f9fa'}}
           >
             <form onSubmit={this.addTask} className="input-group">
@@ -126,17 +126,19 @@ class Dashboard extends Component {
         </div>
         <br></br>
         <div className="row justify-content-center">
-          <div>
+          <div className="frame">
             {this.state.tasks.map((task, i) =>
               <ul key={i}>
                 <div className="row">
                   <input type="checkbox" className="form-check-input" data-index={i} onClick={this.checkTask} checked={task[1]? true : false}></input>
                   <div className="col">
-                  <span className="input-group-text">
-                    {task[1]? <s>{task[0]}</s> : task[0]}
-                  </span>
+                    <span className="input-group-text">
+                      {task[1]? <s>{task[0]}</s> : task[0]} 
+                      <div className="delete">
+                        <button className="btn btn-primary" data-index={i} onClick={this.removeTask}>X</button>
+                      </div>
+                    </span>
                   </div>
-                  <button className="btn btn-primary" data-index={i} onClick={this.removeTask}>X</button>
                 </div>
               </ul>
             )}
