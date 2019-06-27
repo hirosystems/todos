@@ -4,6 +4,8 @@ import NavBar from './NavBar'
 import {jsonCopy, remove, add, check} from './utils'
 import { appConfig, TASKS_FILENAME } from './constants'
 import './Dashboard.css'
+import { configure } from 'radiks'
+
 
 
 class Dashboard extends Component {
@@ -89,7 +91,10 @@ class Dashboard extends Component {
     window.location = '/'
   }
 
+
+
   render() {
+
     const username = this.props.userSession.loadUserData().username
     return (
       <div className="Dashboard">
@@ -102,52 +107,86 @@ class Dashboard extends Component {
           </h1>
         </div>
         <br></br>
-        <div className="row justify-content-center">
-          <div
-            id="addTask"
-            className="frame"
-            style={{borderColor: '#f8f9fa'}}
-          >
-            <form onSubmit={this.addTask} className="input-group">
-              <input
-                className="form-control"
-                type="text"
-                onChange={this.handleChange}
-                value={this.state.value}
-                required
-                placeholder="Write a to-do..."
-                autoFocus={true}
-              />
-              <div className="input-group-append">
-                <input type="submit" className="btn btn-primary" value="Add task"/>
-              </div>
-            </form>
+        <div class="row">
+          <div class="col-2">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link active" id="v-pills-all-tab" data-toggle="pill" href="#v-pills-all" role="tab" aria-controls="v-pills-all" aria-selected="true">All Tasks</a>
+              <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+              <a class="nav-link" id="v-pills-add-tab" data-toggle="pill" href="#v-pills-add" role="tab" aria-controls="v-pills-add" aria-selected="false">Add</a>
+              <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+
+            </div>
           </div>
-        </div>
-        <br></br>
-        <div className="row justify-content-center">
-          <div className="frame">
-            {this.state.tasks.map((task, i) =>
-              <ul key={i}>
-                <div className="row">
-                  <input type="checkbox" className="form-check-input" data-index={i} onClick={this.checkTask} checked={task[1]? true : false}></input>
-                  <div className="col">
-                    <span className="input-group-text">
-                      <div className="task">
-                        {task[1]? <s>{task[0]}</s> : task[0]}
-                      </div> 
-                      <div className="delete">
-                        <button className="btn btn-primary" data-index={i} onClick={this.removeTask}>X</button>
-                      </div>
-                    </span>
+          <div class="col-9">
+            <div class="tab-content" id="v-pills-tabContent">
+              <div class="tab-pane fade show active" id="v-pills-all" role="tabpanel" aria-labelledby="v-pills-all-tab">
+                <div className="row justify-content-center">
+                    <div
+                      id="addTask"
+                      className="frame"
+                      style={{borderColor: '#f8f9fa'}}
+                    >
+                      <form onSubmit={this.addTask} className="input-group">
+                        <input
+                          className="form-control"
+                          type="text"
+                          onChange={this.handleChange}
+                          value={this.state.value}
+                          required
+                          placeholder="Write a to-do..."
+                          autoFocus={true}
+                        />
+                        <div className="input-group-append">
+                          <input type="submit" className="btn btn-primary" value="Add task"/>
+                        </div>
+                      </form>
+                    </div>
                   </div>
-                </div>
-              </ul>
-            )}
+                  <br></br>
+                  <div className="row justify-content-center">
+                    <ul class="nav nav-pills nav-fill">
+                      <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab"href="#">Pending</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#">Completed</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <br></br>
+                  <div className="row justify-content-center">
+                    <div className="frame">
+                      {this.state.tasks.map((task, i) =>
+                        <ul key={i}>
+                          <div className="row">
+                            <input type="checkbox" className="form-check-input" data-index={i} onClick={this.checkTask} checked={task[1]? true : false}></input>
+                            <div className="col">
+                              <span className="input-group-text">
+                                <div className="task">
+                                  {task[1]? <s>{task[0]}</s> : task[0]}
+                                </div> 
+                                <div className="delete">
+                                  <button className="btn btn-primary" data-index={i} onClick={this.removeTask}>X</button>
+                                </div>
+                              </span>
+                            </div>
+                          </div>
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+              
+              </div>
+              <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">Profile</div>
+              <div class="tab-pane fade" id="v-pills-add" role="tabpanel" aria-labelledby="v-pills-add-tab">Add</div>
+              <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Messages<div>
+            </div>
           </div>
-        </div>
-      </div> 
-  
+        </div>  
+      </div>
+      </div>
+      </div>
+
     );
   }
 }
