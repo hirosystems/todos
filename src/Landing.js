@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { UserSession } from 'blockstack'
 import { appConfig } from './constants'
 import './Landing.css'
+import { User, configure } from 'radiks'
 
 class Landing extends Component {
 
@@ -10,9 +11,14 @@ class Landing extends Component {
     this.userSession = new UserSession({ appConfig })
   }
 
-  signIn(e) {
+  async signIn(e) {
     e.preventDefault()
     this.userSession.redirectToSignIn()
+    const userSession = this.userSession
+    configure({
+      apiServer: 'http://localhost:1260',
+      userSession: userSession
+    })
   }
 
   render() {

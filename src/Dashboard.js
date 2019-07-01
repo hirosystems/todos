@@ -4,15 +4,26 @@ import NavBar from './NavBar'
 import {jsonCopy, remove, add, check} from './utils'
 import { appConfig, TASKS_FILENAME } from './constants'
 import './Dashboard.css'
-import { configure } from 'radiks'
+import { Model, User, configure } from 'radiks'
 
+class Testing extends Model {
+  static className = 'Testing';
+  static schema = { // all fields are encrypted by default
+    task: String,
+    completed: {
+      type: Boolean,
+      decrypted: true
+    },
+    project: String
+  }
+};
 
 
 class Dashboard extends Component {
 
   constructor(props) {
     super(props)
-    //this.userSession = new UserSession({ appConfig })
+    this.userSession = this.props.userSession
     this.state = {
       tasks: [],
       value: '',
@@ -27,7 +38,13 @@ class Dashboard extends Component {
     this.checkTask = this.checkTask.bind(this)
   }
 
-  componentWillMount() {
+  async componentWillMount() {
+    configure({
+      apiServer: 'http://localhost:1260',
+      userSession: this.userSession
+    })
+    
+
     this.loadTasks()
   }
 
@@ -38,17 +55,19 @@ class Dashboard extends Component {
         this.setState({ tasks: jsonCopy(nextTasks) })
       }
     }
+
   }
 
-  loadTasks() {
-    const options = { decrypt: false }
-    this.props.userSession.getFile(TASKS_FILENAME, options)
-    .then((content) => {
-      if(content) {
-        const tasks = JSON.parse(content)
-        this.setState({tasks})
-      } 
-    })
+  async loadTasks() {
+    //const options = { decrypt: false }
+    //this.props.userSession.getFile(TASKS_FILENAME, options)
+    //.then((content) => {
+    //  if(content) {
+    //    const tasks = JSON.parse(content)
+    //    this.setState({tasks})
+    //  } 
+    //})
+    
   }
 
   saveTasks(tasks) {
@@ -72,11 +91,20 @@ class Dashboard extends Component {
     this.saveTasks(tasks)
   }
 
-  addTask(e) {
+  async addTask(e) {
     e.preventDefault()
-    const tasks = add(this.state)
-    this.setState({value: '', tasks})
-    this.saveTasks(tasks)
+    //const tasks = add(this.state)
+    //this.setState({value: '', tasks})
+    //this.saveTasks(tasks)
+    //const todo = new Testing({task: "Laundry", completed: true, project: "Home"});
+    //await todo.save();
+    var incompleteTodos = await Testing.fetchList({
+      completed: false
+    });
+    console.log(incompleteTodos)
+    //this.setState({tasks: incompleteTodos})
+    //const del = await Todo.findById('150685ad0529-487a-978d-8300a16241f6');
+    //del.destroy();
   }
 
   checkTask(e) {
@@ -107,19 +135,19 @@ class Dashboard extends Component {
           </h1>
         </div>
         <br></br>
-        <div class="row">
-          <div class="col-2">
-            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <a class="nav-link active" id="v-pills-all-tab" data-toggle="pill" href="#v-pills-all" role="tab" aria-controls="v-pills-all" aria-selected="true">All Tasks</a>
-              <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
-              <a class="nav-link" id="v-pills-add-tab" data-toggle="pill" href="#v-pills-add" role="tab" aria-controls="v-pills-add" aria-selected="false">Add</a>
-              <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+        <div className="row">
+          <div className="col-2">
+            <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a className="nav-link active" id="v-pills-all-tab" data-toggle="pill" href="#v-pills-all" role="tab" aria-controls="v-pills-all" aria-selected="true">All Tasks</a>
+              <a className="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+              <a className="nav-link" id="v-pills-add-tab" data-toggle="pill" href="#v-pills-add" role="tab" aria-controls="v-pills-add" aria-selected="false">Add</a>
+              <a className="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
 
             </div>
           </div>
-          <div class="col-9">
-            <div class="tab-content" id="v-pills-tabContent">
-              <div class="tab-pane fade show active" id="v-pills-all" role="tabpanel" aria-labelledby="v-pills-all-tab">
+          <div className="col-9">
+            <div className="tab-content" id="v-pills-tabContent">
+              <div className="tab-pane fade show active" id="v-pills-all" role="tabpanel" aria-labelledby="v-pills-all-tab">
                 <div className="row justify-content-center">
                     <div
                       id="addTask"
@@ -144,12 +172,12 @@ class Dashboard extends Component {
                   </div>
                   <br></br>
                   <div className="row justify-content-center">
-                    <ul class="nav nav-pills nav-fill">
-                      <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab"href="#">Pending</a>
+                    <ul className="nav nav-pills nav-fill">
+                      <li className="nav-item">
+                        <a className="nav-link active" data-toggle="tab"href="#">Pending</a>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#">Completed</a>
+                      <li className="nav-item">
+                        <a className="nav-link" data-toggle="tab" href="#">Completed</a>
                       </li>
                     </ul>
                   </div>
@@ -177,9 +205,9 @@ class Dashboard extends Component {
                   </div>
               
               </div>
-              <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">Profile</div>
-              <div class="tab-pane fade" id="v-pills-add" role="tabpanel" aria-labelledby="v-pills-add-tab">Add</div>
-              <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Messages<div>
+              <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">Profile</div>
+              <div className="tab-pane fade" id="v-pills-add" role="tabpanel" aria-labelledby="v-pills-add-tab">Add</div>
+              <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Messages<div>
             </div>
           </div>
         </div>  
