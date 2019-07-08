@@ -18,11 +18,6 @@ class CompTab extends Component {
   }
 
   async componentWillMount() {
-    //configure({
-    //  apiServer: 'http://localhost:1260',
-    //  userSession: this.userSession
-    //})
-    //await User.createWithCurrentUser();
     this.loadTasks()
   }
 
@@ -33,9 +28,9 @@ class CompTab extends Component {
 
   removeTask = (index) => {  
     this.setState(state => {
-      const tasks = [...state.tasks];
-      tasks.splice(index, 1);
-      return { tasks };
+      const tasks = [...state.tasks]
+      tasks.splice(index, 1)
+      return { tasks }
     }); //updating state may be redundant with reloading task
     this.props.loadTasks()
   }

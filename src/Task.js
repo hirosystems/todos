@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { configure, User } from 'radiks'
 import { Tester } from './Dashboard'
+import { Tester } from './Dashboard'
 
 
 class Task extends Component {
@@ -19,18 +20,13 @@ class Task extends Component {
   }
 
   async componentWillMount() {
-    //configure({
-    //  apiServer: 'http://localhost:1260',
-    //  userSession: this.userSession
-    //})
-    //await User.createWithCurrentUser();
     this.loadTask()
   }
 
   async loadTask() {
     // Set state with the text and status of this task
     const id = this.props.id 
-    const todo = await Tester.findById({id});
+    const todo = await Tester.findById({id})
     const {task, completed } = todo.attrs
     this.setState({task, completed})
   }
@@ -38,7 +34,7 @@ class Task extends Component {
   async removeTask(e) {
     e.preventDefault()
     const id = this.props.id
-    const todo = await Tester.findById({id});
+    const todo = await Tester.findById({id})
     todo.destroy(); //delete this in the radiks server
     this.props.removeTask(this.props.index) //call the parent component to remove it from its state list of tasks
   }
@@ -50,9 +46,9 @@ class Task extends Component {
     const updatedStatus = {
       completed: !this.state.completed,
     }
-    todo.update(updatedStatus); //update in radiks-server
-    await todo.save();
-    this.setState({completed: !this.state.completed}); //update in state
+    todo.update(updatedStatus) //update in radiks-server
+    await todo.save()
+    this.setState({completed: !this.state.completed}) //update in state
     this.props.checkTask()
   }
 

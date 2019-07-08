@@ -40,17 +40,11 @@ class Dashboard extends Component {
   }
 
   async componentWillMount() {
-    //configure({
-    //  apiServer: 'http://localhost:1260',
-    //  userSession: this.userSession
-    //})
-    //await User.createWithCurrentUser();
     this.loadTasks()
   }
 
 
   async loadTasks() {
-    console.log("dashboard")
     const incompleteTodos = await Tester.fetchList({
       completed: false
     });
@@ -68,21 +62,20 @@ class Dashboard extends Component {
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
-   }
+    this.setState({value: event.target.value})
+  }
 
   async addTask(e) {
     e.preventDefault()
     const task = this.state.value
     const pending = this.state.pending
     const all = this.state.all
-    const todo = new Tester({task: {task}, completed: false});
+    const todo = new Tester({task: {task}, completed: false})
     pending.push(todo._id)
     all.push(todo._id)
     await todo.save();
     this.setState({pending: pending, all: all, value: ''})
   }
-
 
 
   signOut(e) {
@@ -129,30 +122,30 @@ class Dashboard extends Component {
             </div>
           </div>
         <br></br>
-          <div className="row justify-content-center">
-            <ul className="nav nav-pills nav-fill" role="tablist">
-              <li className="nav-item">
-                <a className="nav-link active" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" id="pills-all-tab">All</a>
-              </li>
-              <li className="nav-item">
-              <a className="nav-link" data-toggle="pill" href="#pills-pending" role="tab" aria-controls="pills-pending" id="pills-pending-tab">Pending</a>
-              </li>
-              <li className="nav-item">
-              <a className="nav-link" data-toggle="pill" href="#pills-comp" role="tab" aria-controls="pills-comp" id="pills-comp-tab">Completed</a>
-              </li>
-            </ul>
-            <div className="tab-conent">
-              <div class="tab-pane fade active show" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
-                <CompTab userSession={this.userSession} tasks={this.state.all} loadTasks={this.loadTasks}/>
-              </div>
-              <div class="tab-pane fade" id="pills-pending" role="tabpanel" aria-labelledby="pills-pending-tab">
-                <CompTab userSession={this.userSession} tasks={this.state.pending} loadTasks={this.loadTasks}/>
-              </div>
-              <div class="tab-pane fade" id="pills-comp" role="tabpanel" aria-labelledby="pills-comp-tab">
-                <CompTab userSession={this.userSession} tasks={this.state.completed} loadTasks={this.loadTasks}/>
-              </div>
+        <div className="row justify-content-center">
+          <ul className="nav nav-pills nav-fill" role="tablist">
+            <li className="nav-item">
+              <a className="nav-link active" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" id="pills-all-tab">All</a>
+            </li>
+            <li className="nav-item">
+            <a className="nav-link" data-toggle="pill" href="#pills-pending" role="tab" aria-controls="pills-pending" id="pills-pending-tab">Pending</a>
+            </li>
+            <li className="nav-item">
+            <a className="nav-link" data-toggle="pill" href="#pills-comp" role="tab" aria-controls="pills-comp" id="pills-comp-tab">Completed</a>
+            </li>
+          </ul>
+          <div className="tab-conent">
+            <div class="tab-pane fade active show" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+              <CompTab userSession={this.userSession} tasks={this.state.all} loadTasks={this.loadTasks}/>
             </div>
-          </div>                   
+            <div class="tab-pane fade" id="pills-pending" role="tabpanel" aria-labelledby="pills-pending-tab">
+              <CompTab userSession={this.userSession} tasks={this.state.pending} loadTasks={this.loadTasks}/>
+            </div>
+            <div class="tab-pane fade" id="pills-comp" role="tabpanel" aria-labelledby="pills-comp-tab">
+              <CompTab userSession={this.userSession} tasks={this.state.completed} loadTasks={this.loadTasks}/>
+            </div>
+          </div>
+        </div>                   
       </div>
     );
   }

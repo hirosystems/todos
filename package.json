@@ -21,6 +21,7 @@
   "dependencies": {
     "blockstack": "^19.2.1",
     "bootstrap": "^4.3.1",
+    "eslint": "^6.0.1",
     "http-proxy-middleware": "^0.19.1",
     "radiks": "^0.2.1",
     "react": "^16.8.6",
