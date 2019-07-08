@@ -7,8 +7,8 @@ import './Dashboard.css'
 import { Model, configure, User } from 'radiks'
 import CompTab from './CompTab'
 
-class Todo extends Model {
-  static className = 'Todo';
+class Tester extends Model {
+  static className = 'Tester';
   static schema = { // all fields are encrypted by default
     task: String,
     completed: {
@@ -51,13 +51,13 @@ class Dashboard extends Component {
 
   async loadTasks() {
     console.log("dashboard")
-    const incompleteTodos = await Todo.fetchList({
+    const incompleteTodos = await Tester.fetchList({
       completed: false
     });
-    const completeTodos = await Todo.fetchList({
+    const completeTodos = await Tester.fetchList({
       completed: true
     })
-    const allTodos = await Todo.fetchList({
+    const allTodos = await Tester.fetchList({
     })
     this.setState({
       pending: incompleteTodos, 
@@ -84,11 +84,13 @@ class Dashboard extends Component {
   async addTask(e) {
     e.preventDefault()
     const task = this.state.value
-    this.state.pending.push(task)
-    this.state.all.push(task)
-    const todo = new Todo({task: {task}, completed: false});
+    const pending = this.state.pending
+    const all = this.state.all
+    const todo = new Tester({task: {task}, completed: false});
+    pending.push(todo._id)
+    all.push(todo._id)
     await todo.save();
-    this.setState({value: ''})
+    this.setState({pending: pending, all: all, value: ''})
   }
 
 
@@ -172,4 +174,4 @@ Dashboard.defaultProps = {
   userSession: new UserSession(appConfig)
 };
 
-export { Dashboard, Todo }
+export { Dashboard, Tester }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { configure, User } from 'radiks'
-import { Todo } from './Dashboard'
+import { Tester } from './Dashboard'
 
 
 class Task extends Component {
@@ -30,16 +30,16 @@ class Task extends Component {
   async loadTask() {
     console.log("hi")
     const id = this.props.id 
-    const todo = await Todo.findById({id});
+    const todo = await Tester.findById({id});
     console.log(todo);
-    const {task, completed, _} = todo.attrs
+    const {task, completed } = todo.attrs
     this.setState({task, completed})
   }
 
   async removeTask(e) {
     e.preventDefault()
     const id = this.props.id
-    const todo = await Todo.findById({id});
+    const todo = await Tester.findById({id});
     todo.destroy(); //delete this in the radiks server
     this.props.removeTask(this.props.index) //call the parent component to remove it from its state list of tasks
   }
@@ -47,7 +47,7 @@ class Task extends Component {
   async checkTask(e) {
     e.preventDefault()
     const id = this.props.id
-    const todo = await Todo.findById({id})
+    const todo = await Tester.findById({id})
     const updatedStatus = {
       completed: !this.state.completed,
     }

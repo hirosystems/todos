@@ -51,7 +51,7 @@ class CompTab extends Component {
         {this.state.tasks.map((task,i) =>
         <ul key={i}>
           <Task 
-              id={task._id} 
+              id={task} 
               userSession={this.userSession} 
               removeTask={this.removeTask}
               checkTask={this.checkTask} 
