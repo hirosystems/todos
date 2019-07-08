@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css'
 import { UserSession } from 'blockstack'
 import Landing from './Landing'
-import Dashboard from './Dashboard'
+import { Dashboard } from './Dashboard'
 import { User, getConfig } from 'radiks'
 import { appConfig } from './constants'
 import { configure } from 'radiks'
@@ -15,18 +15,22 @@ class App extends Component {
   }
 
   async componentWillMount() {
-    const session = this.userSession
     configure({
       apiServer: 'http://localhost:1260',
       userSession: this.userSession
     })
-    if(!session.isUserSignedIn() && session.isSignInPending()) {
+    const session = this.userSession;
+    const { userSession } = getConfig();
+
+    if(userSession.isSignInPending()) {
       await session.handlePendingSignIn();
         if(!session.loadUserData().username) {
           throw new Error('This app requires a username.')
         }
-        window.location = `/`
-        await User.createWithCurrentUser();
+       console.log('got here');
+       await User.createWithCurrentUser();
+       console.log('finished')
+       window.location = `/`
     }
   }
 

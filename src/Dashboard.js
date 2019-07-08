@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
 import { UserSession } from 'blockstack'
 import NavBar from './NavBar'
-import {jsonCopy, remove, add, check} from './utils'
+import {jsonCopy, remove, check} from './utils'
 import { appConfig, TASKS_FILENAME } from './constants'
 import './Dashboard.css'
-import { Model, User, configure } from 'radiks'
+import { Model, configure, User } from 'radiks'
+import CompTab from './CompTab'
 
-class Testing extends Model {
-  static className = 'Testing';
+class Todo extends Model {
+  static className = 'Todo';
   static schema = { // all fields are encrypted by default
     task: String,
     completed: {
       type: Boolean,
       decrypted: true
-    },
-    project: String
+    }
   }
 };
+
 
 
 class Dashboard extends Component {
@@ -25,17 +26,17 @@ class Dashboard extends Component {
     super(props)
     this.userSession = this.props.userSession
     this.state = {
-      tasks: [],
-      value: '',
-
+      pending: [],
+      completed: [],
+      all: [],
+      value: ''
     }
 
     this.loadTasks = this.loadTasks.bind(this)
     this.signOut = this.signOut.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.addTask = this.addTask.bind(this)
-    this.removeTask = this.removeTask.bind(this)
-    this.checkTask = this.checkTask.bind(this)
+ 
   }
 
   async componentWillMount() {
@@ -43,30 +44,26 @@ class Dashboard extends Component {
       apiServer: 'http://localhost:1260',
       userSession: this.userSession
     })
-    
-
+    //await User.createWithCurrentUser();
     this.loadTasks()
   }
 
-  componentWillReceiveProps(nextProps) {
-    const nextTasks = nextProps.tasks
-    if(nextTasks) {
-      if (nextTasks.length !== this.state.tasks.length) {
-        this.setState({ tasks: jsonCopy(nextTasks) })
-      }
-    }
-
-  }
 
   async loadTasks() {
-    //const options = { decrypt: false }
-    //this.props.userSession.getFile(TASKS_FILENAME, options)
-    //.then((content) => {
-    //  if(content) {
-    //    const tasks = JSON.parse(content)
-    //    this.setState({tasks})
-    //  } 
-    //})
+    console.log("dashboard")
+    const incompleteTodos = await Todo.fetchList({
+      completed: false
+    });
+    const completeTodos = await Todo.fetchList({
+      completed: true
+    })
+    const allTodos = await Todo.fetchList({
+    })
+    this.setState({
+      pending: incompleteTodos, 
+      completed: completeTodos,
+      all: allTodos
+    })
     
   }
 
@@ -84,41 +81,23 @@ class Dashboard extends Component {
     this.setState({value: event.target.value});
    }
 
-  removeTask(e) {
-    e.preventDefault()
-    const tasks = remove(e.target.dataset.index, this.state)
-    this.setState({ tasks })
-    this.saveTasks(tasks)
-  }
-
   async addTask(e) {
     e.preventDefault()
-    //const tasks = add(this.state)
-    //this.setState({value: '', tasks})
-    //this.saveTasks(tasks)
-    //const todo = new Testing({task: "Laundry", completed: true, project: "Home"});
-    //await todo.save();
-    var incompleteTodos = await Testing.fetchList({
-      completed: false
-    });
-    console.log(incompleteTodos)
-    //this.setState({tasks: incompleteTodos})
-    //const del = await Todo.findById('150685ad0529-487a-978d-8300a16241f6');
-    //del.destroy();
+    const task = this.state.value
+    this.state.pending.push(task)
+    this.state.all.push(task)
+    const todo = new Todo({task: {task}, completed: false});
+    await todo.save();
+    this.setState({value: ''})
   }
 
-  checkTask(e) {
-    const tasks = check(e.target.dataset.index, this.state)
-    this.setState({ tasks })
-    this.saveTasks(tasks)
-  }
+
 
   signOut(e) {
     e.preventDefault()
     this.props.userSession.signUserOut()
     window.location = '/'
   }
-
 
 
   render() {
@@ -135,86 +114,54 @@ class Dashboard extends Component {
           </h1>
         </div>
         <br></br>
-        <div className="row">
-          <div className="col-2">
-            <div className="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <a className="nav-link active" id="v-pills-all-tab" data-toggle="pill" href="#v-pills-all" role="tab" aria-controls="v-pills-all" aria-selected="true">All Tasks</a>
-              <a className="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
-              <a className="nav-link" id="v-pills-add-tab" data-toggle="pill" href="#v-pills-add" role="tab" aria-controls="v-pills-add" aria-selected="false">Add</a>
-              <a className="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
-
+          <div className="row justify-content-center">
+            <div
+              id="addTask"
+              className="frame"
+              style={{borderColor: '#f8f9fa'}}
+            >
+              <form onSubmit={this.addTask} className="input-group">
+                <input
+                  className="form-control"
+                  type="text"
+                  onChange={this.handleChange}
+                  value={this.state.value}
+                  required
+                  placeholder="Write a to-do..."
+                  autoFocus={true}
+                />
+                <div className="input-group-append">
+                  <input type="submit" className="btn btn-primary" value="Add task"/>
+                </div>
+              </form>
             </div>
           </div>
-          <div className="col-9">
-            <div className="tab-content" id="v-pills-tabContent">
-              <div className="tab-pane fade show active" id="v-pills-all" role="tabpanel" aria-labelledby="v-pills-all-tab">
-                <div className="row justify-content-center">
-                    <div
-                      id="addTask"
-                      className="frame"
-                      style={{borderColor: '#f8f9fa'}}
-                    >
-                      <form onSubmit={this.addTask} className="input-group">
-                        <input
-                          className="form-control"
-                          type="text"
-                          onChange={this.handleChange}
-                          value={this.state.value}
-                          required
-                          placeholder="Write a to-do..."
-                          autoFocus={true}
-                        />
-                        <div className="input-group-append">
-                          <input type="submit" className="btn btn-primary" value="Add task"/>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                  <br></br>
-                  <div className="row justify-content-center">
-                    <ul className="nav nav-pills nav-fill">
-                      <li className="nav-item">
-                        <a className="nav-link active" data-toggle="tab"href="#">Pending</a>
-                      </li>
-                      <li className="nav-item">
-                        <a className="nav-link" data-toggle="tab" href="#">Completed</a>
-                      </li>
-                    </ul>
-                  </div>
-                  <br></br>
-                  <div className="row justify-content-center">
-                    <div className="frame">
-                      {this.state.tasks.map((task, i) =>
-                        <ul key={i}>
-                          <div className="row">
-                            <input type="checkbox" className="form-check-input" data-index={i} onClick={this.checkTask} checked={task[1]? true : false}></input>
-                            <div className="col">
-                              <span className="input-group-text">
-                                <div className="task">
-                                  {task[1]? <s>{task[0]}</s> : task[0]}
-                                </div> 
-                                <div className="delete">
-                                  <button className="btn btn-primary" data-index={i} onClick={this.removeTask}>X</button>
-                                </div>
-                              </span>
-                            </div>
-                          </div>
-                        </ul>
-                      )}
-                    </div>
-                  </div>
-              
+        <br></br>
+          <div className="row justify-content-center">
+            <ul className="nav nav-pills nav-fill" role="tablist">
+              <li className="nav-item">
+                <a className="nav-link active" data-toggle="pill" href="#pills-all" role="tab" aria-controls="pills-all" id="pills-all-tab">All</a>
+              </li>
+              <li className="nav-item">
+              <a className="nav-link" data-toggle="pill" href="#pills-pending" role="tab" aria-controls="pills-pending" id="pills-pending-tab">Pending</a>
+              </li>
+              <li className="nav-item">
+              <a className="nav-link" data-toggle="pill" href="#pills-comp" role="tab" aria-controls="pills-comp" id="pills-comp-tab">Completed</a>
+              </li>
+            </ul>
+            <div className="tab-conent">
+              <div class="tab-pane fade active show" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+                <CompTab userSession={this.userSession} tasks={this.state.all} loadTasks={this.loadTasks}/>
               </div>
-              <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">Profile</div>
-              <div className="tab-pane fade" id="v-pills-add" role="tabpanel" aria-labelledby="v-pills-add-tab">Add</div>
-              <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">Messages<div>
+              <div class="tab-pane fade" id="pills-pending" role="tabpanel" aria-labelledby="pills-pending-tab">
+                <CompTab userSession={this.userSession} tasks={this.state.pending} loadTasks={this.loadTasks}/>
+              </div>
+              <div class="tab-pane fade" id="pills-comp" role="tabpanel" aria-labelledby="pills-comp-tab">
+                <CompTab userSession={this.userSession} tasks={this.state.completed} loadTasks={this.loadTasks}/>
+              </div>
             </div>
-          </div>
-        </div>  
+          </div>                   
       </div>
-      </div>
-      </div>
-
     );
   }
 }
@@ -225,4 +172,4 @@ Dashboard.defaultProps = {
   userSession: new UserSession(appConfig)
 };
 
-export default Dashboard
+export { Dashboard, Todo }
