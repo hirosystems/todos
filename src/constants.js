@@ -1,7 +1,7 @@
-import { AppConfig } from 'blockstack'
+import { AppConfig } from 'blockstack';
 
-export const appConfig = new AppConfig(['store_write', 'publish_data'])
+export const appConfig = new AppConfig(['store_write', 'publish_data']);
 
-export const TASKS_FILENAME = 'tasks.json'
+export const TASKS_FILENAME = 'tasks.json';
 
-export const EXPLORER_URL = 'https://explorer.blockstack.org'
+export const EXPLORER_URL = 'https://explorer.blockstack.org';
