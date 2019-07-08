@@ -40,10 +40,10 @@ class Dashboard extends Component {
   }
 
   async componentWillMount() {
-    configure({
-      apiServer: 'http://localhost:1260',
-      userSession: this.userSession
-    })
+    //configure({
+    //  apiServer: 'http://localhost:1260',
+    //  userSession: this.userSession
+    //})
     //await User.createWithCurrentUser();
     this.loadTasks()
   }
@@ -65,16 +65,6 @@ class Dashboard extends Component {
       all: allTodos
     })
     
-  }
-
-  saveTasks(tasks) {
-    const options = { encrypt: false }
-    this.props.userSession.putFile(TASKS_FILENAME, JSON.stringify(tasks), options)
-    .finally(() => {
-      if(window.location.search) {
-        window.history.pushState(null, "", window.location.href.split("?")[0])
-      }
-    })
   }
 
   handleChange(event) {

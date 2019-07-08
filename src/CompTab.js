@@ -18,10 +18,10 @@ class CompTab extends Component {
   }
 
   async componentWillMount() {
-    configure({
-      apiServer: 'http://localhost:1260',
-      userSession: this.userSession
-    })
+    //configure({
+    //  apiServer: 'http://localhost:1260',
+    //  userSession: this.userSession
+    //})
     //await User.createWithCurrentUser();
     this.loadTasks()
   }
@@ -42,6 +42,7 @@ class CompTab extends Component {
 
   checkTask () {
     this.props.loadTasks()
+    // Task's checkTask has updated radiks-server info, just reload that into state
   }
 
   render() {
