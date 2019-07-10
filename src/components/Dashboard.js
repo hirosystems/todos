@@ -36,7 +36,7 @@ class Dashboard extends Component {
   }
 
  loadTasks() {
-    const options = { decrypt: false }
+    const options = { decrypt: true }
     this.props.userSession.getFile(TASKS_FILENAME, options)
     .then((content) => {
       if(content) {
@@ -47,7 +47,7 @@ class Dashboard extends Component {
   }
 
   saveTasks(tasks) {
-    const options = { encrypt: false }
+    const options = { encrypt: true }
     this.props.userSession.putFile(TASKS_FILENAME, JSON.stringify(tasks), options)
   }
 
