@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import './App.css'
+import '../styles/App.css'
 import { UserSession } from 'blockstack'
 import Landing from './Landing'
 import Dashboard from './Dashboard'
-import { appConfig } from './constants'
+import { appConfig } from '../assets/constants'
 
 class App extends Component {
 

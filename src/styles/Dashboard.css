@@ -16,3 +16,12 @@
 .user-info {
     font-size: 7vmin
 }
+
+.row {
+    position: relative
+}
+
+.form-check-input {
+    position: absolute;
+    top: 28%
+}

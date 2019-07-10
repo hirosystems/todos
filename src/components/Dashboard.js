@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { UserSession } from 'blockstack'
+import { UserSession, Person } from 'blockstack'
 import NavBar from './NavBar'
-import {jsonCopy, remove, add, check} from './utils'
-import { appConfig, TASKS_FILENAME } from './constants'
-import './Dashboard.css'
+import {jsonCopy, remove, add, check} from '../assets/utils'
+import { appConfig, TASKS_FILENAME } from '../assets/constants'
+import '../styles/Dashboard.css'
 
 class Dashboard extends Component {
 
@@ -49,11 +49,6 @@ class Dashboard extends Component {
   saveTasks(tasks) {
     const options = { encrypt: false }
     this.props.userSession.putFile(TASKS_FILENAME, JSON.stringify(tasks), options)
-    .finally(() => {
-      if(window.location.search) {
-        window.history.pushState(null, "", window.location.href.split("?")[0])
-      }
-    })
   }
 
   handleChange(event) {
@@ -88,9 +83,11 @@ class Dashboard extends Component {
 
   render() {
     const username = this.props.userSession.loadUserData().username
+    const profile = this.props.userSession.loadUserData()
+    const person = new Person(profile)
     return (
       <div className="Dashboard">
-      <NavBar username={username} signOut={this.signOut}/>
+      <NavBar username={username} user={person} signOut={this.signOut}/>
         <div className="row justify-content-md-center">
           <h1 className="user-info">
             <small>
