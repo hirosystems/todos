@@ -129,10 +129,8 @@ class Dashboard extends Component {
                       </div> 
                       <div className="delete">
                         <button className="btn btn-primary" data-index={i} onClick={this.removeTask}>
-                          <div className="task">
-                           X
-                          </div
-                        ></button>
+                          <div className="X">X</div>
+                        </button>
                       </div>
                     </span>
                     </div>
