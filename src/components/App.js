@@ -13,14 +13,14 @@ class App extends Component {
   }
 
   componentWillMount() {
-    const session = this.userSession
+    const session = this.userSession;
     if(!session.isUserSignedIn() && session.isSignInPending()) {
       session.handlePendingSignIn()
       .then((userData) => {
         if(!userData.username) {
-          throw new Error('This app requires a username.')
+          throw new Error('This app requires a username.');
         }
-        window.location = `/`
+        window.location = `/`;
       })
     }
   }
@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <main role="main">
           {this.userSession.isUserSignedIn() ?
-            <Dashboard userSession={this.userSession}/>
+            <Dashboard userSession={this.userSession} />
           :
             <Landing />
           }

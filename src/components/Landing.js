@@ -7,12 +7,12 @@ import '../styles/Landing.css'
 class Landing extends Component {
 
   constructor() {
-    super()
-    this.userSession = new UserSession({ appConfig })
+    super();
+    this.userSession = new UserSession({ appConfig });
   }
 
    signIn(e) {
-    e.preventDefault()
+    e.preventDefault();
     this.userSession.redirectToSignIn();
   }
 

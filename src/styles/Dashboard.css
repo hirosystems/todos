@@ -25,3 +25,31 @@
     position: absolute;
     top: 28%
 }
+
+.user-info {
+    font-size: 3vw
+}
+
+#header {
+    margin-top: 8vh;
+}
+
+@media screen and (min-width: 801px) {
+    .task {
+        font-size: 2vh
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .task {
+        font-size: 2.5vw
+    }
+    .frame {
+        width:75%;
+        margin:0px
+    }
+
+    .user-info {
+        font-size: 5vw
+    }
+}

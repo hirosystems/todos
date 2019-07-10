@@ -6,7 +6,6 @@ import { appConfig, TASKS_FILENAME } from '../assets/constants'
 import '../styles/Dashboard.css'
 
 class Dashboard extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -14,41 +13,41 @@ class Dashboard extends Component {
       value: '',
     }
 
-    this.loadTasks = this.loadTasks.bind(this)
-    this.signOut = this.signOut.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.addTask = this.addTask.bind(this)
-    this.removeTask = this.removeTask.bind(this)
-    this.checkTask = this.checkTask.bind(this)
+    this.loadTasks = this.loadTasks.bind(this);
+    this.signOut = this.signOut.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.addTask = this.addTask.bind(this);
+    this.removeTask = this.removeTask.bind(this);
+    this.checkTask = this.checkTask.bind(this);
   }
 
   componentWillMount() {
-    this.loadTasks()
+    this.loadTasks();
   }
 
   componentWillReceiveProps(nextProps) {
-    const nextTasks = nextProps.tasks
+    const nextTasks = nextProps.tasks;
     if(nextTasks) {
       if (nextTasks.length !== this.state.tasks.length) {
-        this.setState({ tasks: jsonCopy(nextTasks) })
+        this.setState({ tasks: jsonCopy(nextTasks) });
       }
     }
   }
 
  loadTasks() {
-    const options = { decrypt: true }
+    const options = { decrypt: true };
     this.props.userSession.getFile(TASKS_FILENAME, options)
     .then((content) => {
       if(content) {
-        const tasks = JSON.parse(content)
-        this.setState({tasks})
+        const tasks = JSON.parse(content);
+        this.setState({tasks});
       } 
     })
   }
 
   saveTasks(tasks) {
-    const options = { encrypt: true }
-    this.props.userSession.putFile(TASKS_FILENAME, JSON.stringify(tasks), options)
+    const options = { encrypt: true };
+    this.props.userSession.putFile(TASKS_FILENAME, JSON.stringify(tasks), options);
   }
 
   handleChange(event) {
@@ -56,44 +55,42 @@ class Dashboard extends Component {
    }
 
   removeTask(e) {
-    e.preventDefault()
-    const tasks = remove(e.target.dataset.index, this.state)
-    this.setState({ tasks })
-    this.saveTasks(tasks)
+    e.preventDefault();
+    const tasks = remove(e.target.dataset.index, this.state);
+    this.setState({ tasks });
+    this.saveTasks(tasks);
   }
 
   addTask(e) {
-    e.preventDefault()
-    const tasks = add(this.state)
-    this.setState({value: '', tasks})
-    this.saveTasks(tasks)
+    e.preventDefault();
+    const tasks = add(this.state);
+    this.setState({value: '', tasks});
+    this.saveTasks(tasks);
   }
 
   checkTask(e) {
-    const tasks = check(e.target.dataset.index, this.state)
-    this.setState({ tasks })
-    this.saveTasks(tasks)
+    const tasks = check(e.target.dataset.index, this.state);
+    this.setState({ tasks });
+    this.saveTasks(tasks);
   }
 
   signOut(e) {
-    e.preventDefault()
-    this.props.userSession.signUserOut()
-    window.location = '/'
+    e.preventDefault();
+    this.props.userSession.signUserOut();
+    window.location = '/';
   }
 
   render() {
-    const username = this.props.userSession.loadUserData().username
-    const profile = this.props.userSession.loadUserData()
-    const person = new Person(profile)
+    const username = this.props.userSession.loadUserData().username;
+    const profile = this.props.userSession.loadUserData();
+    const person = new Person(profile);
     return (
       <div className="Dashboard">
       <NavBar username={username} user={person} signOut={this.signOut}/>
-        <div className="row justify-content-md-center">
-          <h1 className="user-info">
-            <small>
-              {username}'s to-dos
-            </small>
-          </h1>
+        <div className="row justify-content-center"id="header">
+          <h3 className="user-info">
+            {username}'s to-dos
+          </h3>
         </div>
         <br></br>
         <div className="row justify-content-center">
@@ -109,11 +106,11 @@ class Dashboard extends Component {
                 onChange={this.handleChange}
                 value={this.state.value}
                 required
-                placeholder="Write a to-do..."
+                placeholder="To-do..."
                 autoFocus={true}
               />
-              <div className="input-group-append">
-                <input type="submit" className="btn btn-primary" value="Add task"/>
+              <div className="input-group-append" id="add-task">
+                <input type="submit" className="btn btn-primary" value="Add"/>
               </div>
             </form>
             </div>
@@ -131,7 +128,11 @@ class Dashboard extends Component {
                         {task[1]? <s>{task[0]}</s> : task[0]}
                       </div> 
                       <div className="delete">
-                        <button className="btn btn-primary" data-index={i} onClick={this.removeTask}>X</button>
+                        <button className="btn btn-primary" data-index={i} onClick={this.removeTask}>
+                          <div className="task">
+                           X
+                          </div
+                        ></button>
                       </div>
                     </span>
                     </div>
