@@ -1,7 +1,7 @@
 // https://www.sitepoint.com/test-react-components-jest/ tutorial
 // was used to inform testing. 
 
-import {add, remove, check} from '../utils.js'
+import {add, remove, check} from '../assets/utils.js'
 
 
 // Tests for check function

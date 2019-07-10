@@ -6,7 +6,7 @@ import * as blockstack from 'blockstack'
 // InstanceDataStore not exported from blockstack.ja by default; 
 // must import using full path
 import { InstanceDataStore } from 'blockstack/lib/auth/sessionStore'
-import Dashboard from '../Dashboard.js'
+import Dashboard from '../components/Dashboard.js'
 import React from 'react';
 import {configure, mount, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
