@@ -20,8 +20,8 @@ class Landing extends Component {
         <div className="form-signin">
           <h1 className="h1 mb-3 font-weight-normal">To-do List</h1>
           <p>
-            A decentralized Todo app built on
-            <a href="https://blockstack.org" target="_blank" rel="noopener noreferrer">Blockstack</a>
+            A decentralized app built on 
+            <a href="https://blockstack.org" target="_blank" rel="noopener noreferrer"> Blockstack </a>
           </p>
           <button
             className="btn btn-lg btn-primary btn-block"

@@ -6,6 +6,7 @@ import './Dashboard.css';
 import CompTab from './CompTab';
 import NavBar from './NavBar';
 
+
 class Tester extends Model {
   static className = 'Tester';
 
@@ -37,6 +38,9 @@ class Dashboard extends Component {
   }
 
   async componentWillMount() {
+    //const { getDB } = require('radiks-server');
+    //const mongo = await getDB('mongodb://localhost:27017/radiks-server');
+    //console.log(mongo);
     this.loadTasks();
   }
 

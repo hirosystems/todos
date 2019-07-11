@@ -17,20 +17,21 @@ class App extends Component {
       apiServer: 'http://localhost:1260',
       userSession: this.userSession,
     });
-    const session = this.userSession;
+    //const session = this.userSession;
     const { userSession } = getConfig();
 
     if (userSession.isSignInPending()) {
       await userSession.handlePendingSignIn();
-      if (!session.loadUserData().username) {
-        throw new Error('This app requires a username.');
-      }
+      //if (!session.loadUserData().username) {
+      //  throw new Error('This app requires a username.');
+      //}
       await User.createWithCurrentUser();
       window.location = '/';
     }
   }
 
   render() {
+    const userSession = getConfig()
     return (
       <main role="main">
         {this.userSession.isUserSignedIn()
