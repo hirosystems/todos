@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 import { UserSession, Person } from 'blockstack'
-import NavBar from './NavBar'
+import Navbar from './Navbar'
 import {jsonCopy, remove, add, check} from '../assets/utils'
 import { appConfig, TASKS_FILENAME } from '../assets/constants'
-import '../styles/Dashboard.css'
+import '../styles/Profile.css'
 
-class Dashboard extends Component {
+class Profile extends Component {
   constructor(props) {
-    super(props)
-    this.state = {
+  	super(props);
+
+  	this.state = {
       tasks: [],
       value: '',
     }
 
     this.loadTasks = this.loadTasks.bind(this);
-    this.signOut = this.signOut.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.addTask = this.addTask.bind(this);
     this.removeTask = this.removeTask.bind(this);
@@ -34,7 +34,7 @@ class Dashboard extends Component {
     }
   }
 
- loadTasks() {
+  loadTasks() {
     const options = { decrypt: true };
     this.props.userSession.getFile(TASKS_FILENAME, options)
     .then((content) => {
@@ -74,19 +74,13 @@ class Dashboard extends Component {
     this.saveTasks(tasks);
   }
 
-  signOut(e) {
-    e.preventDefault();
-    this.props.userSession.signUserOut();
-    window.location = '/';
-  }
-
   render() {
     const username = this.props.userSession.loadUserData().username;
     const profile = this.props.userSession.loadUserData();
     const person = new Person(profile);
     return (
       <div className="Dashboard">
-      <NavBar username={username} user={person} signOut={this.signOut}/>
+      <Navbar username={username} user={person} signOut={this.props.handleSignOut}/>
         <div className="row justify-content-center"id="header">
           <h3 className="user-info">
             {username}'s to-dos
@@ -142,11 +136,13 @@ class Dashboard extends Component {
     </div>
   );
   }
+
 }
+
 // Made this a default prop (instead of using this.userSession) so a dummy userSession
 // can be passed in for testing purposes
-Dashboard.defaultProps = {
+Profile.defaultProps = {
   userSession: new UserSession(appConfig)
 };
 
-export default Dashboard
+export default Profile

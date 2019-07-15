@@ -15,7 +15,7 @@ class NavBar extends Component {
             <Link className="nav-link" to='/'>{username}</Link>
           </li>
         </ul>
-        <img src={user.avatarUrl() ? user.avatarUrl() : './avatar-placeholder.png'} class="avatar" width="25" height="25"/>
+        <img src={user.avatarUrl() ? user.avatarUrl() : './avatar-placeholder.png'} class="avatar" width="25" height="25"alt=""/>
         <button
           className="btn btn-primary"
           onClick={this.props.signOut.bind(this)}
