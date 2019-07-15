@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { UserSession, Person } from 'blockstack'
-import Navbar from './Navbar'
+import Navbar from './Navbar.js'
 import {jsonCopy, remove, add, check} from '../assets/utils'
 import { appConfig, TASKS_FILENAME } from '../assets/constants'
 import '../styles/Profile.css'
