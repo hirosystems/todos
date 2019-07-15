@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import '../styles/Navbar.css'
+import '../styles/NavBar.css'
 
-class Navbar extends Component {
+class NavBar extends Component {
 
   render() {
     const username = this.props.username
@@ -27,4 +27,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar
+export default NavBar

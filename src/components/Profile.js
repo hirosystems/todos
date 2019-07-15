@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { UserSession, Person } from 'blockstack'
-import Navbar from './Navbar'
+import NavBar from './NavBar'
 import {jsonCopy, remove, add, check} from '../assets/utils'
 import { appConfig, TASKS_FILENAME } from '../assets/constants'
 import '../styles/Profile.css'
@@ -80,7 +80,7 @@ class Profile extends Component {
     const person = new Person(profile);
     return (
       <div className="Dashboard">
-      <Navbar username={username} user={person} signOut={this.props.handleSignOut}/>
+      <NavBar username={username} user={person} signOut={this.props.handleSignOut}/>
         <div className="row justify-content-center"id="header">
           <h3 className="user-info">
             {username}'s to-dos
