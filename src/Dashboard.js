@@ -38,26 +38,26 @@ class Dashboard extends Component {
   }
 
   async componentWillMount() {
-    //const { getDB } = require('radiks-server');
-    //const mongo = await getDB('mongodb://localhost:27017/radiks-server');
-    //console.log(mongo);
     this.loadTasks();
   }
 
   async loadTasks() {
-    const incompleteTodos = await Tester.fetchList({
+    var incompleteTodos = await Tester.fetchList({
       completed: false,
     });
-    const completeTodos = await Tester.fetchList({
+    var completeTodos = await Tester.fetchList({
       completed: true,
     });
-    const allTodos = await Tester.fetchList({
+    var allTodos = await Tester.fetchList({
     });
     this.setState({
       pending: incompleteTodos,
       completed: completeTodos,
       all: allTodos,
     });
+    console.log(incompleteTodos);
+    console.log(completeTodos);
+    console.log(allTodos);
   }
 
   handleChange(event) {
@@ -67,13 +67,10 @@ class Dashboard extends Component {
   async addTask(e) {
     e.preventDefault();
     const task = this.state.value;
-    const pending = this.state.pending;
-    const all = this.state.all;
-    const todo = new Tester({ task: { task }, completed: false });
-    pending.push(todo._id);
-    all.push(todo._id);
+    const todo = new Tester({ task: task, completed: false });
     await todo.save();
-    this.setState({ pending, all, value: '' });
+    this.setState({ value: '' });
+    this.loadTasks();
   }
 
 
@@ -86,6 +83,9 @@ class Dashboard extends Component {
 
   render() {
     const username = this.props.userSession.loadUserData().username;
+    const pending = this.state.pending;
+    const all = this.state.all;
+    const completed = this.state.completed;
     return (
       <div className="Dashboard">
         <NavBar username={username} signOut={this.signOut} />
@@ -134,13 +134,13 @@ class Dashboard extends Component {
           </ul>
           <div className="tab-conent">
             <div className="tab-pane fade active show" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
-              <CompTab userSession={this.userSession} tasks={this.state.all} loadTasks={this.loadTasks} />
+              <CompTab userSession={this.userSession} tasks={all} loadTasks={this.loadTasks} />
             </div>
             <div className="tab-pane fade" id="pills-pending" role="tabpanel" aria-labelledby="pills-pending-tab">
-              <CompTab userSession={this.userSession} tasks={this.state.pending} loadTasks={this.loadTasks} />
+              <CompTab userSession={this.userSession} tasks={pending} loadTasks={this.loadTasks} />
             </div>
             <div className="tab-pane fade" id="pills-comp" role="tabpanel" aria-labelledby="pills-comp-tab">
-              <CompTab userSession={this.userSession} tasks={this.state.completed} loadTasks={this.loadTasks} />
+              <CompTab userSession={this.userSession} tasks={completed} loadTasks={this.loadTasks} />
             </div>
           </div>
         </div>

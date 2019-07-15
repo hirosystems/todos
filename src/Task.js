@@ -10,7 +10,7 @@ class Task extends Component {
       completed: '',
     };
 
-    this.loadTask = this.loadTasks.bind(this);
+    this.loadTask = this.loadTask.bind(this);
     this.removeTask = this.removeTask.bind(this);
     this.checkTask = this.checkTask.bind(this);
   }
@@ -21,15 +21,18 @@ class Task extends Component {
 
   async loadTask() {
     // Set state with the text and status of this task
-    const id = this.props.id ;
+    const id = this.props._id ;
     const todo = await Tester.findById({ id });
+    console.log("HIYA");
+    console.log(todo);
     const { task, completed } = todo.attrs;
+    console.log(task);
     this.setState({ task, completed });
   }
 
   async removeTask(e) {
     e.preventDefault();
-    const id = this.props.id;
+    const id = this.props._id;
     const todo = await Tester.findById({ id });
     todo.destroy(); // delete this in the radiks server
     this.props.removeTask(this.props.index);
@@ -37,7 +40,7 @@ class Task extends Component {
 
   async checkTask(e) {
     e.preventDefault();
-    const id = this.props.id;
+    const id = this.props._id;
     const todo = await Tester.findById({ id });
     const updatedStatus = {
       completed: !this.state.completed,
