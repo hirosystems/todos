@@ -123,7 +123,7 @@ class Profile extends Component {
                       </div> 
                       <div className="delete">
                         <button className="btn btn-primary" data-index={i} onClick={this.removeTask}>
-                          <div className="X">X</div>
+                          <div className="X" data-index={i}>X</div>
                         </button>
                       </div>
                     </span>
