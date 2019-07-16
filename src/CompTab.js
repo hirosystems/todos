@@ -29,6 +29,7 @@ class CompTab extends Component {
 
   loadTasks() {
     const tasks = this.props.tasks;
+    console.log(this.props.tasks)
     this.setState({tasks});
     console.log("hello im in comptab");
     console.log(this.state.tasks)
@@ -40,13 +41,15 @@ class CompTab extends Component {
   }
 
   render() {
+    const tasks = this.state.tasks
+    console.log(tasks)
     return (
       <div className="row justify-content-center">
         <div className="frame">
           {this.props.tasks.map((task, i) =>
           <ul key={i}>
               <Task
-                id={task}
+                task={task}
                 userSession={this.userSession}
                 removeTask={this.removeTask}
                 checkTask={this.checkTask}
