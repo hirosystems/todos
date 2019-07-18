@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tester } from './Dashboard';
+import { Todo } from './Profile';
 
 class Task extends Component {
   constructor(props) {
@@ -22,19 +22,18 @@ class Task extends Component {
   async loadTask() {
     // Set state with the text and status of this task
     const id = this.props.task._id ;
-    //console.log(id);
-    const todo = await Tester.findById( id );
-    //console.log("HIYA!");
-    //console.log(todo);
+    const todo = await Todo.findById( id );
+    console.log(todo);
     const { task, completed } = todo.attrs;
     //console.log(task);
+    //console.log(completed)
     this.setState({ task, completed });
   }
 
   async removeTask(e) {
     e.preventDefault();
     const id = this.props.task._id;
-    const todo = await Tester.findById( id );
+    const todo = await Todo.findById( id );
     console.log(todo);
     await todo.destroy(); // delete this in the radiks server
     this.props.removeTask(this.props.index);
@@ -44,7 +43,8 @@ class Task extends Component {
     //have state update before we save via radiks to speed up the response of the checkbox actually being filled
     e.preventDefault();
     const id = this.props.task._id;
-    const todo = await Tester.findById( id );
+    const todo = await Todo.findById( id );
+    console.log(todo);
     const updatedStatus = {
       completed: !this.state.completed,
     };

@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { UserSession } from 'blockstack';
+import React, { Component } from 'react'
+import { UserSession, Person } from 'blockstack'
+import NavBar from './NavBar'
 import { Model } from 'radiks';
-import { appConfig } from './constants';
-import './Dashboard.css';
+import {jsonCopy, remove, add, check} from '../assets/utils'
+import { appConfig, TASKS_FILENAME } from '../assets/constants'
 import CompTab from './CompTab';
-import NavBar from './NavBar';
+import '../styles/Profile.css'
 
-
-class Tester extends Model {
-  static className = 'Tester';
+class Todo extends Model {
+  static className = 'Todo';
 
   static schema = { // all fields are encrypted by default
     task: String,
@@ -19,10 +19,9 @@ class Tester extends Model {
   }
 }
 
-
-class Dashboard extends Component {
+class Profile extends Component {
   constructor(props) {
-    super(props);
+  	super(props);
     this.userSession = this.props.userSession;
     this.state = {
       pending: [],
@@ -30,65 +29,66 @@ class Dashboard extends Component {
       all: [],
       value: '',
     };
-
+    
     this.loadTasks = this.loadTasks.bind(this);
-    this.signOut = this.signOut.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.addTask = this.addTask.bind(this);
+
   }
 
-  async componentWillMount() {
+  componentWillMount() {
     this.loadTasks();
   }
 
+  //componentWillReceiveProps(nextProps) {
+  //  const nextTasks = nextProps.tasks;
+  //  if(nextTasks) {
+  //    if (nextTasks.length !== this.state.tasks.length) {
+  //      this.setState({ tasks: jsonCopy(nextTasks) });
+  //    }
+  //  }
+  //}
+
   async loadTasks() {
-    var incompleteTodos = await Tester.fetchList({
+    var incompleteTodos = await Todo.fetchOwnList({
       completed: false,
     });
-    var completeTodos = await Tester.fetchList({
+    var completeTodos = await Todo.fetchOwnList({
       completed: true,
     });
-    var allTodos = await Tester.fetchList({
+    var allTodos = await Todo.fetchOwnList({
     });
     this.setState({
       pending: incompleteTodos,
       completed: completeTodos,
       all: allTodos,
     });
-    console.log(incompleteTodos);
-    console.log(completeTodos);
-    console.log(allTodos);
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value });
+    this.setState({value: event.target.value});
   }
 
   async addTask(e) {
     e.preventDefault();
     const task = this.state.value;
-    const todo = new Tester({ task: task, completed: false });
+    const todo = new Todo({ task: task, completed: false });
     await todo.save();
     this.setState({ value: '' });
     this.loadTasks();
   }
 
 
-  signOut(e) {
-    e.preventDefault();
-    this.props.userSession.signUserOut();
-    window.location = '/';
-  }
-
-
   render() {
-    const username = this.props.userSession.loadUserData().username;
     const pending = this.state.pending;
     const all = this.state.all;
     const completed = this.state.completed;
+    const profile = this.props.userSession.loadUserData();
+    const username = profile.username; 
+    const person = new Person(profile);
     return (
       <div className="Dashboard">
-        <NavBar username={username} signOut={this.signOut} />
+        <NavBar username={username} user={person} signOut={this.props.handleSignOut} />
         <div className="row justify-content-md-center">
           <h1 className="user-info">
             <small>
@@ -132,12 +132,12 @@ class Dashboard extends Component {
               <a className="nav-link" data-toggle="pill" href="#pills-comp" role="tab" aria-controls="pills-comp" id="pills-comp-tab">Completed</a>
             </li>
           </ul>
-          <div className="tab-conent">
+          <div className="tab-content">
             <div className="tab-pane fade active show" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
               <CompTab userSession={this.userSession} tasks={all} loadTasks={this.loadTasks} />
             </div>
             <div className="tab-pane fade" id="pills-pending" role="tabpanel" aria-labelledby="pills-pending-tab">
-              <CompTab userSession={this.userSession} tasks={pending} loadTasks={this.loadTasks} />
+            <CompTab userSession={this.userSession} tasks={pending} loadTasks={this.loadTasks} />
             </div>
             <div className="tab-pane fade" id="pills-comp" role="tabpanel" aria-labelledby="pills-comp-tab">
               <CompTab userSession={this.userSession} tasks={completed} loadTasks={this.loadTasks} />
@@ -147,12 +147,13 @@ class Dashboard extends Component {
       </div>
     );
   }
+
 }
 
 // Made this a default prop (instead of using this.userSession) so a dummy userSession
 // can be passed in for testing purposes
-Dashboard.defaultProps = {
-  userSession: new UserSession(appConfig),
+Profile.defaultProps = {
+  userSession: new UserSession(appConfig)
 };
 
-export { Dashboard, Tester };
+export { Profile, Todo };

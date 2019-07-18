@@ -29,10 +29,10 @@ class CompTab extends Component {
 
   loadTasks() {
     const tasks = this.props.tasks;
-    console.log(this.props.tasks)
+    //console.log(this.props.tasks)
     this.setState({tasks});
-    console.log("hello im in comptab");
-    console.log(this.state.tasks)
+    //console.log("hello im in comptab");
+    //console.log(this.state.tasks)
   }
 
   checkTask() {
@@ -42,7 +42,7 @@ class CompTab extends Component {
 
   render() {
     const tasks = this.state.tasks
-    console.log(tasks)
+    //console.log(tasks)
     return (
       <div className="row justify-content-center">
         <div className="frame">
