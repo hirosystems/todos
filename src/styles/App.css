@@ -1,0 +1,81 @@
+body {
+  padding-top: 5rem;
+  background-color: rgb(241, 246, 249);
+}
+
+.badge-primary {
+  background-color: rgb(33, 31, 109);
+  padding-top: 8px;
+}
+
+.btn-primary {
+  color: #FFFFFF;
+  background-color: rgb(33, 31, 109) !important;
+  border: 0 !important;
+}
+
+.btn-primary:hover {
+  opacity: 0.5;
+  border: 0;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  opacity: 0.5;
+  background-color: rgb(135, 172, 196);
+}
+
+.card {
+  max-width: 320px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  border-top-color: rgb(196, 216, 229);
+  border-right-color: rgb(196, 216, 229);
+  border-bottom-color: rgb(196, 216, 229);
+  border-left-color: rgb(196, 216, 229);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.0470588) 0px 4px 4px;
+}
+
+.card-img-top {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.list-group {
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  border-top-color: rgb(196, 216, 229);
+  border-right-color: rgb(196, 216, 229);
+  border-bottom-color: rgb(196, 216, 229);
+  border-left-color: rgb(196, 216, 229);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.0470588) 0px 4px 4px;
+}

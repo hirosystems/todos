@@ -1,0 +1,60 @@
+.frame {
+    width:50%;
+    margin:0px
+}
+
+.delete {
+    margin-right:0;
+    margin-left:auto; 
+}
+
+.input-group-text {
+    white-space: normal !important;
+    text-align:left !important
+}
+
+.user-info {
+    font-size: 7vmin
+}
+
+.row {
+    position: relative
+}
+
+.form-check-input {
+    position: absolute;
+    top: 28%
+}
+
+.user-info {
+    font-size: 3vw
+}
+
+#header {
+    margin-top: 8vh;
+}
+
+@media screen and (min-width: 801px) {
+    .task {
+        font-size: 2vh
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .task {
+        font-size: 2.5vw
+    }
+
+    .X {
+        font-size: 2.5vw
+    }
+
+    .frame {
+        width:75%;
+        margin:0px
+    }
+
+    .user-info {
+        font-size: 5vw
+    }
+}
