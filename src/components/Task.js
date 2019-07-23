@@ -23,7 +23,7 @@ class Task extends Component {
     // Set state with the text and status of this task
     const id = this.props.task._id ;
     const todo = await Todo.findById( id );
-    console.log(todo);
+    //console.log(todo);
     const { task, completed } = todo.attrs;
     //console.log(task);
     //console.log(completed)
@@ -34,9 +34,10 @@ class Task extends Component {
     e.preventDefault();
     const id = this.props.task._id;
     const todo = await Todo.findById( id );
-    console.log(todo);
-    await todo.destroy(); // delete this in the radiks server
+    //console.log("Task.js")
+    //console.log(todo);
     this.props.removeTask(this.props.index);
+    await todo.destroy(); // delete this in the radiks server
   }
 
   async checkTask(e) {
@@ -44,7 +45,7 @@ class Task extends Component {
     e.preventDefault();
     const id = this.props.task._id;
     const todo = await Todo.findById( id );
-    console.log(todo);
+    //console.log(todo);
     const updatedStatus = {
       completed: !this.state.completed,
     };

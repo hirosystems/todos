@@ -6,7 +6,7 @@ class CompTab extends Component {
     super(props);
     this.userSession = this.props.userSession;
     this.state = {
-      tasks: [], // contains Radiks ID of the tasks
+      tasks: [],
     };
 
     this.loadTasks = this.loadTasks.bind(this);
@@ -14,39 +14,49 @@ class CompTab extends Component {
     this.checkTask = this.checkTask.bind(this);
   }
 
-  async componentWillMount() {
+  componentWillMount() {
     this.loadTasks();
   }
 
   removeTask = (index) => {
-    this.setState((state) => {
-      const tasks = [...state.tasks];
-      tasks.splice(index, 1);
-      return { tasks };
-    }); // updating state may be redundant with reloading task
+    //this.setState((state) => {
+    //  const tasks = [...state.tasks];
+    //  tasks.splice(index, 1);
+    //  return { tasks };
+    //}); // updating state may be redundant with reloading task
+    //console.log("compTab removeTask");
     this.props.loadTasks();
+    this.loadTasks();
   }
 
   loadTasks() {
+  //  console.log("compTabe loadTasks")
+    //console.log("CompTab loadTasks")
     const tasks = this.props.tasks;
-    //console.log(this.props.tasks)
+    //console.log(tasks);
+  //  //console.log(this.props.tasks)
     this.setState({tasks});
+    //console.log(this.state.tasks);
     //console.log("hello im in comptab");
     //console.log(this.state.tasks)
   }
 
   checkTask() {
     this.props.loadTasks();
+    this.loadTasks();
     // Task's checkTask has updated radiks-server info, just reload that into state
   }
 
   render() {
-    const tasks = this.state.tasks
-    //console.log(tasks)
+    //this.loadTasks();
+    //this.props.loadTasks();
+    const newTasks = this.props.tasks
+    console.log("render");
+    console.log(newTasks);
     return (
       <div className="row justify-content-center">
         <div className="frame">
-          {this.props.tasks.map((task, i) =>
+          {newTasks.map((task, i) =>
           <ul key={i}>
               <Task
                 task={task}

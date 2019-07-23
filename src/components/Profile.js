@@ -50,6 +50,7 @@ class Profile extends Component {
   //}
 
   async loadTasks() {
+    //console.log("Profile loadTasks");
     var incompleteTodos = await Todo.fetchOwnList({
       completed: false,
     });
@@ -80,9 +81,9 @@ class Profile extends Component {
 
 
   render() {
-    const pending = this.state.pending;
-    const all = this.state.all;
-    const completed = this.state.completed;
+    var pending = this.state.pending;
+    var all = this.state.all;
+    var completed = this.state.completed;
     const profile = this.props.userSession.loadUserData();
     const username = profile.username; 
     const person = new Person(profile);
@@ -137,7 +138,7 @@ class Profile extends Component {
               <CompTab userSession={this.userSession} tasks={all} loadTasks={this.loadTasks} />
             </div>
             <div className="tab-pane fade" id="pills-pending" role="tabpanel" aria-labelledby="pills-pending-tab">
-            <CompTab userSession={this.userSession} tasks={pending} loadTasks={this.loadTasks} />
+              <CompTab userSession={this.userSession} tasks={pending} loadTasks={this.loadTasks} />
             </div>
             <div className="tab-pane fade" id="pills-comp" role="tabpanel" aria-labelledby="pills-comp-tab">
               <CompTab userSession={this.userSession} tasks={completed} loadTasks={this.loadTasks} />
