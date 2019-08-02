@@ -33,6 +33,8 @@ class Profile extends Component {
     this.loadTasks = this.loadTasks.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.addTask = this.addTask.bind(this);
+    this.removeTask = this.removeTask.bind(this);
+    this.checkTask = this.checkTask.bind(this);
 
   }
 
@@ -41,10 +43,10 @@ class Profile extends Component {
   }
 
   //componentWillReceiveProps(nextProps) {
-  //  const nextTasks = nextProps.tasks;
+  //  const nextTasks = nextProps.pending;
   //  if(nextTasks) {
-  //    if (nextTasks.length !== this.state.tasks.length) {
-  //      this.setState({ tasks: jsonCopy(nextTasks) });
+  //   if (nextTasks.length !== this.state.pending.length) {
+  //      this.setState({ pending: jsonCopy(nextTasks) });
   //    }
   //  }
   //}
@@ -76,6 +78,23 @@ class Profile extends Component {
     const todo = new Todo({ task: task, completed: false });
     await todo.save();
     this.setState({ value: '' });
+    this.loadTasks();
+  }
+
+  async checkTask(id) {
+    const todo = await Todo.findById( id );
+    const { completed } = todo.attrs;
+    const updatedStatus = {
+      completed: !completed,
+    };
+    todo.update(updatedStatus); // update in radiks-server
+    await todo.save();
+    this.loadTasks();
+  }
+
+  async removeTask(id) {
+    const todo = await Todo.findById( id );
+    await todo.destroy();
     this.loadTasks();
   }
 
@@ -133,15 +152,29 @@ class Profile extends Component {
               <a className="nav-link" data-toggle="pill" href="#pills-comp" role="tab" aria-controls="pills-comp" id="pills-comp-tab">Completed</a>
             </li>
           </ul>
+        </div>
+        <div className="row justify-content-center">
           <div className="tab-content">
             <div className="tab-pane fade active show" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
-              <CompTab userSession={this.userSession} tasks={all} loadTasks={this.loadTasks} />
+              <CompTab userSession={this.userSession} 
+                       tasks={all} 
+                       loadTasks={this.loadTasks} 
+                       removeTask={this.removeTask}
+                       checkTask={this.checkTask}/>
             </div>
             <div className="tab-pane fade" id="pills-pending" role="tabpanel" aria-labelledby="pills-pending-tab">
-              <CompTab userSession={this.userSession} tasks={pending} loadTasks={this.loadTasks} />
+              <CompTab userSession={this.userSession}
+                       tasks={pending}
+                       loadTasks={this.loadTasks}
+                       removeTask={this.removeTask}
+                       checkTask={this.checkTask} />
             </div>
             <div className="tab-pane fade" id="pills-comp" role="tabpanel" aria-labelledby="pills-comp-tab">
-              <CompTab userSession={this.userSession} tasks={completed} loadTasks={this.loadTasks} />
+              <CompTab userSession={this.userSession}
+                       tasks={completed}
+                       loadTasks={this.loadTasks} 
+                       removeTask={this.removeTask}
+                       checkTask={this.checktask}/>
             </div>
           </div>
         </div>

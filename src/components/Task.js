@@ -20,39 +20,22 @@ class Task extends Component {
   }
 
   async loadTask() {
-    // Set state with the text and status of this task
     const id = this.props.task._id ;
     const todo = await Todo.findById( id );
-    //console.log(todo);
     const { task, completed } = todo.attrs;
-    //console.log(task);
-    //console.log(completed)
     this.setState({ task, completed });
   }
 
   async removeTask(e) {
     e.preventDefault();
-    const id = this.props.task._id;
-    const todo = await Todo.findById( id );
-    //console.log("Task.js")
-    //console.log(todo);
-    this.props.removeTask(this.props.index);
-    await todo.destroy(); // delete this in the radiks server
+    this.props.removeTask(this.props.task._id);
+    console.log(this.props.task._id);
   }
 
   async checkTask(e) {
-    //have state update before we save via radiks to speed up the response of the checkbox actually being filled
     e.preventDefault();
-    const id = this.props.task._id;
-    const todo = await Todo.findById( id );
-    //console.log(todo);
-    const updatedStatus = {
-      completed: !this.state.completed,
-    };
-    todo.update(updatedStatus); // update in radiks-server
-    await todo.save();
-    this.setState({ completed: !this.state.completed }); // update in state
-    this.props.checkTask();
+    this.setState({completed: !this.state.completed});
+    this.props.checkTask(this.props.task._id);
   }
 
   render() {
