@@ -56,7 +56,8 @@ class Profile extends Component {
 
   removeTask(e) {
     e.preventDefault();
-    const tasks = remove(e.target.dataset.index, this.state);
+    //fixed: undefined data-index from input
+    const tasks = remove(e.currentTarget.dataset.index, this.state);
     this.setState({ tasks });
     this.saveTasks(tasks);
   }
