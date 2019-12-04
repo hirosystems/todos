@@ -1,6 +1,6 @@
 # Blockstack Todo App
 
-> A simple Vue.js Todo app built for the decentralized web.
+> A simple React Todo app built for the decentralized web.
 
 ## Build Setup
 ``` bash
