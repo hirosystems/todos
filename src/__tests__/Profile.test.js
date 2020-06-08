@@ -35,7 +35,8 @@ const userSession = new blockstack.UserSession({
 
 // Testing that to-do items are rendered
 test('renders to-do list text', () => {
-  const wrapper = shallow(<Profile userSession={userSession} />);
+  const userData = userSession.loadUserData();
+  const wrapper = shallow(<Profile userData={userData} />);
   wrapper.setState({tasks: [['Create a Blockstack ID', false]]});
   const text = wrapper.find('.task');
   expect(text.text()).toBe('Create a Blockstack ID');

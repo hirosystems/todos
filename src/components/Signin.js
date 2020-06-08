@@ -1,27 +1,24 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../styles/Signin.css'
+import { useConnect } from '@blockstack/connect';
 
-class Signin extends Component {
+export const Signin = () => {
+  const { doOpenAuth } = useConnect();
 
-  render() {
-    const { handleSignIn } = this.props;
-
-    return (
-      <div className ="intro">
-        <div className="panel-landing" id="section-1">
-          <h1 className="landing-heading">To-Do List</h1>
-          <p>A decentralized To-do app built on <a href="https://blockstack.org" target="_blank"rel="noopener noreferrer">Blockstack</a></p>
-          <button
-            className="btn btn-primary btn-lg"
-            id="signin-button"
-            onClick={ handleSignIn.bind(this) }
-          >
-            Sign In with Blockstack
-          </button>
-        </div>
-      </div>
-    );
-  }
+  return (
+    <div className="panel-landing" id="section-1">
+      <h1 className="landing-heading">Hello, Blockstack!</h1>
+      <p className="lead">
+        <button
+          className="btn btn-primary btn-lg"
+          id="signin-button"
+          onClick={() => doOpenAuth()}
+        >
+          Sign In with Blockstack
+        </button>
+      </p>
+    </div>
+  );
 }
 
-export default Signin
+export default Signin;

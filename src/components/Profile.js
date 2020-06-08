@@ -76,8 +76,8 @@ class Profile extends Component {
   }
 
   render() {
-    const username = this.props.userSession.loadUserData().username;
-    const profile = this.props.userSession.loadUserData();
+    const username = this.props.userData.username;
+    const profile = this.props.userData.profile;
     const person = new Person(profile);
     return (
       <div className="Dashboard">
