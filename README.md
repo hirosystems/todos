@@ -1,27 +1,20 @@
 # Blockstack Todo App
 
-> A simple React Todo app built for the decentralized web.
+A simple React Todo app built for the decentralized web.
 
-## Build Setup
+This app was built for learning purposes. Try it out at [todos.blockstack.org](https://todos.blockstack.org), and check out our [guide](https://docs.blockstack.org/browser/todo-list.html) that walks you through how it all works.
+
+![demo](./public/demo.png)
+
+## Usage
+
 ``` bash
 # install dependencies
-# previously we used yarn install. This is no longer supported.
 npm install
 
 # Compiles and hot-reloads for development
-npm run serve
+npm run start
 
 # Compiles and minifies for production
 npm run build
 ```
-## Linting & Unit test
-
-``` bash
-# Lints and fixes files
-npm run lint
-
-# Run your unit tests
-npm run test:unit
-```
-
-For detailed explanation on how this app works, checkout the [guide](https://blockstack.org/tutorials/todo-list/).
