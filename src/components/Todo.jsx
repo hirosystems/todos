@@ -24,7 +24,7 @@ const TodoInput = styled(Input)`
  */
 
 /**
- * Component for an inditivual task
+ * Component for an individual task
  * @param {TodoProps} properties
  */
 export const Todo = ({ complete = false, value = '', index, save, create, disabled = false }) => {
