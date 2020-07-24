@@ -24,8 +24,10 @@ export const defaultTasks = [
  * @param {boolean} isPublic
  */
 export const saveTasks = async (userSession, tasks, isPublic) => {
+  console.log(tasks);
   await userSession.putFile(TASKS_FILENAME, JSON.stringify({ tasks, isPublic }), {
     encrypt: !isPublic,
+    dangerouslyIgnoreEtag: true,
   });
 };
 
@@ -55,7 +57,7 @@ export const fetchTasks = async (userSession, username) => {
         };
       } else {
         if (!username) {
-          const decrypted = JSON.parse(userSession.decryptContent(tasksJSON));
+          const decrypted = JSON.parse(await userSession.decryptContent(tasksJSON));
           return {
             tasks: decrypted.tasks,
             public: false,

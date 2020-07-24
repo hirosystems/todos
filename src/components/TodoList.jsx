@@ -17,7 +17,6 @@ export const TodoList = () => {
 
   useEffect(() => {
     const username = document.location.pathname.split('/')[2];
-    console.log(username);
     if (username) {
       setUsername(username);
     }
