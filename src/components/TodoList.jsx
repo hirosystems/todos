@@ -5,6 +5,7 @@ import { Todo } from './Todo';
 import { v4 as uuid } from 'uuid';
 import { Sharer } from './Sharer';
 import { fetchTasks, saveTasks } from '../assets/data-store';
+import exportFromJSON from 'export-from-json';
 
 export const TodoList = () => {
   const [tasks, setTasks] = useState([]);
@@ -54,6 +55,14 @@ export const TodoList = () => {
     setTasks(tasks.concat([{ value: '', completed: false, id: uuid() }]));
   };
 
+  const exportData = () => {
+    const data = tasks;
+    const fileName = 'todo';
+    const exportType = 'csv';
+    console.log(tasks);
+    exportFromJSON({ data, fileName, exportType });
+  };
+
   const todos = tasks.map((task, index) => (
     <Todo
       {...task}
@@ -64,6 +73,13 @@ export const TodoList = () => {
       create={createTask}
     />
   ));
+
+  const getDownload = () => {
+    if (loading) {
+      return '';
+    }
+    return 'Export as csv';
+  };
 
   const getHeader = () => {
     if (loading) {
@@ -90,6 +106,17 @@ export const TodoList = () => {
               {getHeader()}
             </Text>
           </Box>
+          <Text
+            cursor="pointer"
+            fontSize={1}
+            color="blue"
+            fontWeight="500"
+            onClick={() => {
+              exportData();
+            }}
+          >
+            {getDownload()}
+          </Text>
           {!loading && !username && (
             <Sharer
               isPublic={isPublic}
@@ -98,6 +125,7 @@ export const TodoList = () => {
                 setIsPublic(!isPublic);
               }}
             />
+            
           )}
           {loading ? <Text>loading...</Text> : todos}
         </Flex>
