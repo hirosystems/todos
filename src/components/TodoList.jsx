@@ -56,11 +56,7 @@ export const TodoList = () => {
   };
 
   const exportData = () => {
-    const data = tasks;
-    const fileName = 'todo';
-    const exportType = 'csv';
-    console.log(tasks);
-    exportFromJSON({ data, fileName, exportType });
+    exportFromJSON({ data: tasks, fileName: 'todo', exportType: 'csv' });
   };
 
   const todos = tasks.map((task, index) => (
@@ -78,7 +74,7 @@ export const TodoList = () => {
     if (loading) {
       return '';
     }
-    return 'Export as csv';
+    return 'Export as CSV';
   };
 
   const getHeader = () => {
@@ -125,7 +121,6 @@ export const TodoList = () => {
                 setIsPublic(!isPublic);
               }}
             />
-            
           )}
           {loading ? <Text>loading...</Text> : todos}
         </Flex>
