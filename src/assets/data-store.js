@@ -1,5 +1,6 @@
 import { v4 as uuid } from 'uuid';
 import { TASKS_FILENAME } from './constants';
+import { Storage } from '@stacks/storage';
 
 /**
  * @typedef {Object} Task
@@ -24,8 +25,8 @@ export const defaultTasks = [
  * @param {boolean} isPublic
  */
 export const saveTasks = async (userSession, tasks, isPublic) => {
-  console.log(tasks);
-  await userSession.putFile(TASKS_FILENAME, JSON.stringify({ tasks, isPublic }), {
+  const storage = new Storage({userSession})
+  await storage.putFile(TASKS_FILENAME, JSON.stringify({ tasks, isPublic }), {
     encrypt: !isPublic,
     dangerouslyIgnoreEtag: true,
   });
@@ -36,15 +37,16 @@ export const saveTasks = async (userSession, tasks, isPublic) => {
  *
  * If no tasks are found, and no username is provided, then the default tasks are returned.
  * If tasks are found, we check to see if they are public.
- * @param {import("blockstack").UserSession} userSession
+ * @param {import("@stacks/auth").UserSession} userSession
  * @param {string} username - the username to fetch tasks for. Omit this argument or set it to an empty string
  * to fetch the current user's tasks.
  * @returns {{ tasks: Task[] | null, public: boolean }}
  */
 export const fetchTasks = async (userSession, username) => {
   try {
+    const storage = new Storage({userSession})
     /** @type {string} raw JSON stored in Gaia */
-    const tasksJSON = await userSession.getFile(TASKS_FILENAME, {
+    const tasksJSON = await storage.getFile(TASKS_FILENAME, {
       decrypt: false,
       username: username || undefined,
     });
