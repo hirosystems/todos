@@ -1,6 +1,6 @@
 {
-  "name": "bs-todo",
-  "description": "A decentralized Todo app built on Blockstack",
+  "name": "stacks-todo",
+  "description": "A decentralized Todo app built using Stacks.js",
   "author": "Michael Stivala <michaelstivala@me.com> (https://michaelstivala.com/)",
   "contributors": [
     "Aaron Blankstein <aaron@blockstack.com> (https://github.com/kantai)",
@@ -16,7 +16,7 @@
     "type": "git",
     "url": "https://github.com/blockstack/blockstack-todos"
   },
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@blockstack/connect": "^2.7.7",
