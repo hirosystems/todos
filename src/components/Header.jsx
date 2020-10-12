@@ -2,7 +2,7 @@ import React from 'react';
 import { Flex, Box, Text } from '@blockstack/ui';
 import { useConnect } from '@blockstack/connect';
 import { Logo } from './icons/logo';
-import { Person } from 'blockstack';
+import { Person } from '@stacks/profile';
 
 const Auth = () => {
   const { authOptions } = useConnect();

@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Signin } from './Signin';
 import { Header } from './Header';
 import { ThemeProvider, theme, CSSReset, ToastProvider } from '@blockstack/ui';
-import { UserSession } from 'blockstack';
 import { appConfig } from '../assets/constants';
 import { Connect } from '@blockstack/connect';
 import { TodoList } from './TodoList';
+import { UserSession } from '@stacks/auth';
 
 const userSession = new UserSession({ appConfig });
 
