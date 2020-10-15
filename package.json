@@ -14,16 +14,16 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/blockstack/blockstack-todos"
+    "url": "https://github.com/blockstack/stacks-todos"
   },
   "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "@blockstack/connect": "^2.7.7",
+    "@blockstack/connect": "^2.12.7",
     "@blockstack/ui": "^2.7.0",
-    "@stacks/auth": "^1.0.0-beta.4",
-    "@stacks/storage": "^1.0.0-beta.4",
-    "@stacks/profile": "^1.0.0-beta.4",
+    "@stacks/auth": "^1.0.0-beta.7",
+    "@stacks/profile": "^1.0.0-beta.7",
+    "@stacks/storage": "^1.0.0-beta.7",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
