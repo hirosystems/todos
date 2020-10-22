@@ -3,9 +3,8 @@ import { Signin } from './Signin';
 import { Header } from './Header';
 import { ThemeProvider, theme, CSSReset, ToastProvider } from '@blockstack/ui';
 import { appConfig } from '../assets/constants';
-import { Connect } from '@blockstack/connect';
 import { TodoList } from './TodoList';
-import { UserSession } from '@stacks/auth';
+import { UserSession, Connect } from '@stacks/auth';
 
 const userSession = new UserSession({ appConfig });
 

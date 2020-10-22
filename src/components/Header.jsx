@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, Box, Text } from '@blockstack/ui';
-import { useConnect } from '@blockstack/connect';
+import { useConnect } from '@stacks/auth';
 import { Logo } from './icons/logo';
 import { Person } from '@stacks/profile';
 
