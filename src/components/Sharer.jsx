@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex, Box, Text, Input, useClipboard } from '@blockstack/ui';
 import { ChainIcon } from './icons/chain';
-import { useConnect } from '@blockstack/connect';
+import { useConnect } from '@stacks/auth';
 
 export const Sharer = ({ togglePublic, isPublic }) => {
   const { authOptions } = useConnect();

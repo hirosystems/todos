@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Flex, Box, Text } from '@blockstack/ui';
-import { useConnect } from '@blockstack/connect';
+import { useConnect } from '@stacks/auth';
 import { Todo } from './Todo';
 import { v4 as uuid } from 'uuid';
 import { Sharer } from './Sharer';
