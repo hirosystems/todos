@@ -55,8 +55,8 @@ export const TodoList = () => {
     setTasks(tasks.concat([{ value: '', completed: false, id: uuid() }]));
   };
 
-  const exportData = () => {
-    exportFromJSON({ data: tasks, fileName: 'todo', exportType: 'csv' });
+  const exportData = ({ exportType }) => {
+    exportFromJSON({ data: tasks, fileName: 'todo', exportType: exportType });
   };
 
   const todos = tasks.map((task, index) => (

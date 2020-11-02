@@ -1,4 +1,4 @@
-# Blockstack Todo App
+# Stacks Todo App
 
 A simple React Todo app built for the decentralized web.
 
