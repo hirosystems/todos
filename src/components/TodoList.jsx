@@ -74,7 +74,7 @@ export const TodoList = () => {
     if (loading) {
       return '';
     }
-    return 'Export as CSV';
+    return 'Export as csv';
   };
 
   const getHeader = () => {
@@ -121,6 +121,7 @@ export const TodoList = () => {
                 setIsPublic(!isPublic);
               }}
             />
+            
           )}
           {loading ? <Text>loading...</Text> : todos}
         </Flex>
