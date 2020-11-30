@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Svg } from '@blockstack/ui';
 import { Svg } from './svg';
 
 export const CheckboxUnchecked = props => {

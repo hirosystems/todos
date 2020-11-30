@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Svg } from '@blockstack/ui';
 import { Svg } from './svg';
 
 export const CheckboxChecked = props => {
@@ -9,9 +8,9 @@ export const CheckboxChecked = props => {
       <path
         d="M5.25 8L7.5 10L11 6"
         stroke="white"
-        stroke-width="1.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </Svg>
   );

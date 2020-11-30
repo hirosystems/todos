@@ -1,20 +1,17 @@
-# Stacks Todo App
+# Todos App with Stacks
 
-A simple React Todo app built for the decentralized web.
+A simple todos app that demonstrates how JavaScript apps can integrate functionality provided by [the Stacks network](https://stacks.co/) with [the Stacks.js library](https://github.com/blockstack/stacks.js).
 
-This app was built for learning purposes. Try it out at [todos.blockstack.org](https://todos.blockstack.org), and check out our [guide](https://docs.blockstack.org/browser/todo-list.html) that walks you through how it all works.
+[Try out the app as a user](https://todos.blockstack.org) or [learn how it works as a developer](https://docs.blockstack.org/authentication/building-todo-app).
 
 ![demo](./public/demo.png)
 
-## Usage
+Want to run the app locally and make changes?
+
+Follow these instructions:
 
 ``` bash
-# install dependencies
+git clone https://github.com/blockstack/todos && cd todos
 npm install
-
-# Compiles and hot-reloads for development
 npm run start
-
-# Compiles and minifies for production
-npm run build
 ```
