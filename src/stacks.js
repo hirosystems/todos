@@ -12,10 +12,10 @@ function authenticate(sendToSignIn) {
     },
     appDetails: {
       name: 'Todos',
-      icon: window.location.origin + '/logo.svg'
+      icon: window.location.origin + '/logo.svg',
     },
-    sendToSignIn: sendToSignIn
-  })
+    sendToSignIn: sendToSignIn,
+  });
 }
 
-export { authenticate, userSession }
+export { authenticate, userSession };
