@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import { Signin } from './Signin';
 import { Header } from './Header';
 import { ThemeProvider, theme, CSSReset, ToastProvider } from '@blockstack/ui';
-import { appConfig } from '../assets/constants';
-import { Connect } from '@blockstack/connect';
+import { Connect } from '@stacks/connect-react';
 import { TodoList } from './TodoList';
-import { UserSession } from '@stacks/auth';
-
-const userSession = new UserSession({ appConfig });
+import { userSession } from '../stacks';
 
 export default class App extends Component {
   state = {
@@ -24,8 +21,8 @@ export default class App extends Component {
     const { userData } = this.state;
     const authOptions = {
       appDetails: {
-        name: "To-do's",
-        icon: window.location.origin + '/logo.svg',
+        name: "Todos",
+        icon: window.location.origin + '/logo.svg'
       },
       userSession,
       finished: ({ userSession }) => {

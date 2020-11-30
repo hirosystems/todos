@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Flex, Box, Text } from '@blockstack/ui';
-import { useConnect } from '@blockstack/connect';
+import { userSession } from '../stacks';
 import { Todo } from './Todo';
 import { v4 as uuid } from 'uuid';
 import { Sharer } from './Sharer';
@@ -13,8 +13,6 @@ export const TodoList = () => {
   const [isPublic, setIsPublic] = useState(false);
   const [username, setUsername] = useState('');
   const [notFound, setNotFound] = useState(false);
-  const { authOptions } = useConnect();
-  const { userSession } = authOptions;
 
   useEffect(() => {
     const username = document.location.pathname.split('/')[2];
@@ -32,7 +30,7 @@ export const TodoList = () => {
       setLoading(false);
     };
     doFetchTasks();
-  }, [userSession]);
+  }, []);
 
   const saveTask = ({ value, complete, index, remove }) => {
     setTasks(currentTasks => {
@@ -74,7 +72,7 @@ export const TodoList = () => {
     if (loading) {
       return '';
     }
-    return 'Export as csv';
+    return 'Export as CSV';
   };
 
   const getHeader = () => {
@@ -82,15 +80,15 @@ export const TodoList = () => {
       return 'Loading...';
     }
     if (notFound) {
-      return '404. No to-do list found here.';
+      return '404. No todos found here.';
     }
     if (username) {
       if (isPublic) {
-        return `${username.split('.')[0]}'s to-do list`;
+        return `${username.split('.')[0]}'s todos`;
       }
-      return `${username.split('.')[0]}'s to-do list is private`;
+      return `${username.split('.')[0]}'s todos are private`;
     }
-    return 'My to-do list';
+    return 'My todos';
   };
 
   return (

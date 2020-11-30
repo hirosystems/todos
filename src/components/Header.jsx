@@ -1,13 +1,10 @@
 import React from 'react';
 import { Flex, Box, Text } from '@blockstack/ui';
-import { useConnect } from '@blockstack/connect';
+import { userSession } from '../stacks';
 import { Logo } from './icons/logo';
 import { Person } from '@stacks/profile';
 
 const Auth = () => {
-  const { authOptions } = useConnect();
-  const { userSession } = authOptions;
-
   if (!userSession.isUserSignedIn()) {
     return null;
   }
@@ -61,7 +58,7 @@ export const Header = () => {
       <Box alignItems onClick={() => (document.location = '/')} cursor="pointer">
         <Logo style={{ position: 'relative', top: '-1px' }} />
         <Text ml={2} display="inline-block" fontWeight="600">
-          To-do
+          Todos
         </Text>
       </Box>
       <Auth />
