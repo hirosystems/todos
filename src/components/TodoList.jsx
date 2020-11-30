@@ -100,15 +100,7 @@ export const TodoList = () => {
               {getHeader()}
             </Text>
           </Box>
-          <Text
-            cursor="pointer"
-            fontSize={1}
-            color="blue"
-            fontWeight="500"
-            onClick={
-              exportData
-            }
-          >
+          <Text cursor="pointer" fontSize={1} color="blue" fontWeight="500" onClick={exportData}>
             {getDownload()}
           </Text>
           {!loading && !username && (

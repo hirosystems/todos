@@ -21,8 +21,8 @@ export default class App extends Component {
     const { userData } = this.state;
     const authOptions = {
       appDetails: {
-        name: "Todos",
-        icon: window.location.origin + '/logo.svg'
+        name: 'Todos',
+        icon: window.location.origin + '/logo.svg',
       },
       userSession,
       finished: ({ userSession }) => {

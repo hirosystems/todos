@@ -11,7 +11,7 @@ function authenticate(sendToSignIn) {
       window.location.reload();
     },
     appDetails: {
-      name: "Todos",
+      name: 'Todos',
       icon: window.location.origin + '/logo.svg'
     },
     sendToSignIn: sendToSignIn
