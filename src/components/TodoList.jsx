@@ -4,7 +4,7 @@ import { userSession } from '../stacks';
 import { Todo } from './Todo';
 import { v4 as uuid } from 'uuid';
 import { Sharer } from './Sharer';
-import { fetchTasks, saveTasks } from '../assets/data-store';
+import { fetchTasks, saveTasks } from '../data-store';
 import exportFromJSON from 'export-from-json';
 
 export const TodoList = () => {

@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid';
-import { TASKS_FILENAME } from './constants';
-import { Storage } from '@stacks/storage';
+import { storage } from './stacks';
+
+const TASKS_FILENAME = 'tasks.json';
 
 /**
  * @typedef {Object} Task
@@ -25,7 +26,6 @@ export const defaultTasks = [
  * @param {boolean} isPublic
  */
 export const saveTasks = async (userSession, tasks, isPublic) => {
-  const storage = new Storage({ userSession });
   await storage.putFile(TASKS_FILENAME, JSON.stringify({ tasks, isPublic }), {
     encrypt: !isPublic,
     dangerouslyIgnoreEtag: true,
@@ -44,7 +44,6 @@ export const saveTasks = async (userSession, tasks, isPublic) => {
  */
 export const fetchTasks = async (userSession, username) => {
   try {
-    const storage = new Storage({ userSession });
     /** @type {string} raw JSON stored in Gaia */
     const tasksJSON = await storage.getFile(TASKS_FILENAME, {
       decrypt: false,
