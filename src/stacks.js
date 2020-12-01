@@ -1,5 +1,4 @@
-import { AppConfig, UserSession } from '@stacks/auth';
-import { showBlockstackConnect } from '@stacks/connect';
+import { AppConfig, UserSession, showBlockstackConnect } from '@stacks/auth';
 import { Person } from '@stacks/profile';
 import { Storage } from '@stacks/storage';
 
@@ -15,10 +14,11 @@ export function authenticate(sendToSignIn) {
       icon: window.location.origin + '/logo.svg',
     },
     redirectTo: '/',
-    sendToSignIn: sendToSignIn,
     finished: () => {
       window.location.reload();
     },
+    sendToSignIn: sendToSignIn,
+    userSession: userSession,
   });
 }
 
