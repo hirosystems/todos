@@ -1,18 +1,16 @@
 import React from 'react';
 import { Flex, Box, Text } from '@blockstack/ui';
-import { userSession } from '../stacks';
+import { getPerson, getUserData, userSession } from '../stacks';
 import { Logo } from './icons/logo';
-import { Person } from '@stacks/profile';
 
 const Auth = () => {
   if (!userSession.isUserSignedIn()) {
     return null;
   }
 
-  const userData = userSession.loadUserData();
-
   const Avatar = () => {
-    const person = new Person(userData.profile);
+    const person = getPerson();
+
     if (person.avatarUrl()) {
       return (
         <Box
@@ -34,7 +32,7 @@ const Auth = () => {
   return (
     <Box>
       <Avatar />
-      <Text fontWeight="500">{userData.username}</Text>
+      <Text fontWeight="500">{getUserData().username}</Text>
       <Text
         fontWeight="300"
         display="inline-block"
