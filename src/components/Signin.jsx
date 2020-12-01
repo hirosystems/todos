@@ -6,7 +6,7 @@ export const Signin = () => {
   return (
     <Box width="100%" textAlign="center">
       <Box maxWidth="800px" mx="auto" mt={[6, '100px']}>
-        <Text fontWeight="700" fontSize={['36px', '60px']} lineHeight={1} display="block">
+        <Text fontWeight="700" fontSize={['36px', '50px']} lineHeight={1} display="block">
           Todos secured by Stacks
         </Text>
         <Box mt={[5, '60px']}>
