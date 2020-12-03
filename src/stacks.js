@@ -1,4 +1,4 @@
-import { AppConfig, UserSession, showBlockstackConnect } from '@stacks/auth';
+import { AppConfig, UserSession, showConnect } from '@stacks/auth';
 import { Person } from '@stacks/profile';
 import { Storage } from '@stacks/storage';
 
@@ -7,8 +7,8 @@ const appConfig = new AppConfig(['store_write', 'publish_data']);
 export const userSession = new UserSession({ appConfig });
 export const storage = new Storage({ userSession });
 
-export function authenticate(sendToSignIn) {
-  showBlockstackConnect({
+export function authenticate() {
+  showConnect({
     appDetails: {
       name: 'Todos',
       icon: window.location.origin + '/logo.svg',
@@ -17,7 +17,6 @@ export function authenticate(sendToSignIn) {
     finished: () => {
       window.location.reload();
     },
-    sendToSignIn: sendToSignIn,
     userSession: userSession,
   });
 }

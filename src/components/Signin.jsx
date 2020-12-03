@@ -12,22 +12,6 @@ export const Signin = () => {
         <Box mt={[5, '60px']}>
           <Button onClick={() => authenticate()}>Get Started</Button>
         </Box>
-        <Box mt={[3, '30px']}>
-          <Text fontSize={1}>
-            or{' '}
-            <Text
-              color="blue"
-              cursor="pointer"
-              fontSize={1}
-              fontWeight="500"
-              onClick={() => {
-                authenticate(true);
-              }}
-            >
-              Sign In
-            </Text>
-          </Text>
-        </Box>
       </Box>
     </Box>
   );
