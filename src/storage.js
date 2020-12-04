@@ -1,6 +1,8 @@
 import { v4 as uuid } from 'uuid';
-import { storage } from './stacks';
+import { userSession } from './auth';
+import { Storage } from '@stacks/storage';
 
+const storage = new Storage({ userSession });
 const TASKS_FILENAME = 'tasks.json';
 
 /**

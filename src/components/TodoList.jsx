@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Flex, Box, Text } from '@blockstack/ui';
-import { userSession } from '../stacks';
+import { userSession } from '../auth';
 import { Todo } from './Todo';
 import { v4 as uuid } from 'uuid';
 import { Sharer } from './Sharer';
-import { fetchTasks, saveTasks } from '../data-store';
+import { fetchTasks, saveTasks } from '../storage';
 import exportFromJSON from 'export-from-json';
 
 export const TodoList = () => {

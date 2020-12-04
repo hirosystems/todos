@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, Box, Text } from '@blockstack/ui';
-import { getPerson, getUserData, userSession } from '../stacks';
+import { getPerson, getUserData, userSession } from '../auth';
 import { Logo } from './icons/logo';
 
 const Auth = () => {
