@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Text, Button } from '@blockstack/ui';
-import { authenticate } from '../stacks';
+import { authenticate } from '../auth';
 
 export const Signin = () => {
   return (

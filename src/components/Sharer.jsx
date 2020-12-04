@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex, Box, Text, Input, useClipboard } from '@blockstack/ui';
 import { ChainIcon } from './icons/chain';
-import { userSession } from '../stacks';
+import { userSession } from '../auth';
 
 export const Sharer = ({ togglePublic, isPublic }) => {
   const { username } = userSession.loadUserData();

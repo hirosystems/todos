@@ -3,7 +3,7 @@ import { Signin } from './Signin';
 import { Header } from './Header';
 import { ThemeProvider, theme, CSSReset, ToastProvider } from '@blockstack/ui';
 import { TodoList } from './TodoList';
-import { userSession } from '../stacks';
+import { userSession } from '../auth';
 
 export default class App extends Component {
   state = {
