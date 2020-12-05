@@ -30,6 +30,7 @@ const TodoInput = styled(Input)`
 export const Todo = ({ complete = false, value = '', index, save, create, disabled = false }) => {
   const [input, setInput] = useState(value);
   const [focused, setFocused] = useState(false);
+  const [completeTick, setcCompleteTick] = useState(complete);
 
   const doSave = () => {
     if (!disabled) {
@@ -59,10 +60,11 @@ export const Todo = ({ complete = false, value = '', index, save, create, disabl
                 value: input,
                 index,
               });
+              setcCompleteTick(!complete);
             }
           }}
         >
-          {complete ? (
+          {completeTick ? (
             <CheckboxChecked cursor="pointer" display="inline-block" />
           ) : (
             <CheckboxUnchecked cursor="pointer" display="inline-block" />
@@ -80,7 +82,7 @@ export const Todo = ({ complete = false, value = '', index, save, create, disabl
             autoFocus={!value}
             isDisabled={disabled}
             style={{
-              textDecoration: complete ? 'line-through' : 'none',
+              textDecoration: completeTick ? 'line-through' : 'none',
             }}
             onFocus={() => setFocused(true)}
             onKeyDown={e => {
