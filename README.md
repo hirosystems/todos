@@ -12,6 +12,6 @@ Follow these instructions:
 
 ``` bash
 git clone https://github.com/blockstack/todos && cd todos
-npm install
-npm run start
+yarn install
+yarn run start
 ```

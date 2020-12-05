@@ -1,4 +1,4 @@
-import { AppConfig, UserSession, showConnect } from '@stacks/auth';
+import { AppConfig, UserSession, showConnect } from '@stacks/connect';
 import { Person } from '@stacks/profile';
 
 const appConfig = new AppConfig(['store_write', 'publish_data']);
