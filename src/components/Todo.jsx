@@ -54,13 +54,14 @@ export const Todo = ({ complete = false, value = '', index, save, create, disabl
         <Box
           style={{ position: 'relative', top: '14px' }}
           onClick={() => {
+            complete = !completeTick;
             if (!disabled) {
               save({
-                complete: !complete,
+                complete: complete,
                 value: input,
                 index,
               });
-              setCompleteTick(!complete);
+              setCompleteTick(complete);
             }
           }}
         >
