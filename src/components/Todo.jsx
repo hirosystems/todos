@@ -30,7 +30,7 @@ const TodoInput = styled(Input)`
 export const Todo = ({ complete = false, value = '', index, save, create, disabled = false }) => {
   const [input, setInput] = useState(value);
   const [focused, setFocused] = useState(false);
-  const [completeTick, setcCompleteTick] = useState(complete);
+  const [completeTick, setCompleteTick] = useState(complete);
 
   const doSave = () => {
     if (!disabled) {
@@ -60,7 +60,7 @@ export const Todo = ({ complete = false, value = '', index, save, create, disabl
                 value: input,
                 index,
               });
-              setcCompleteTick(!complete);
+              setCompleteTick(!complete);
             }
           }}
         >
