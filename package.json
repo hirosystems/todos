@@ -18,7 +18,7 @@
     "type": "git",
     "url": "https://github.com/blockstack/todos"
   },
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "dependencies": {
     "@blockstack/ui": "^2.12.14",
