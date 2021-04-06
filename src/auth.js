@@ -16,6 +16,7 @@ export function authenticate() {
       window.location.reload();
     },
     userSession: userSession,
+    registerSubdomain: true,
   });
 }
 
