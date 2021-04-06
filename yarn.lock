@@ -1559,28 +1559,21 @@
   dependencies:
     cross-fetch "^3.0.6"
 
-"@stacks/connect-ui@^2.17.17-alpha.71d36ee.0":
-  version "2.17.17-alpha.fea675d.0"
-  resolved "https://registry.yarnpkg.com/@stacks/connect-ui/-/connect-ui-2.17.17-alpha.fea675d.0.tgz#f0c956102132b9a1e04e0954c01341ee8cbf6ea5"
-  integrity sha512-sQ58tQfdLO/HBK2O/XLmXVBuITL+xv+T3NyLqWzbc6QaKyKXmizNLirA7TWFF2Qbx1W+gctNd/cdvRp38aB0Zg==
+"@stacks/connect-ui@2.17.17-alpha.139647e.0", "@stacks/connect-ui@^2.17.17-alpha.139647e.0":
+  version "2.17.17-alpha.139647e.0"
+  resolved "https://registry.yarnpkg.com/@stacks/connect-ui/-/connect-ui-2.17.17-alpha.139647e.0.tgz#861794eb54a3e85e932d3be93b7eec3c16427fbd"
+  integrity sha512-0heOElZsBSiSNtgdbMv7tYQVdzG8xUJZoEkZzRDZzFYx8+W8nP5lKlIxz00DgiuotfamONlVkJbOoOUv+xQoqQ==
   dependencies:
     "@stencil/core" "^1.17.3"
 
-"@stacks/connect-ui@bns-2-connect":
-  version "2.17.17-alpha.71d36ee.0"
-  resolved "https://registry.yarnpkg.com/@stacks/connect-ui/-/connect-ui-2.17.17-alpha.71d36ee.0.tgz#d6337ba5cc387a78e715a5580c2293094373842a"
-  integrity sha512-nbZ95PguTkBKQVmYPwXHjtaiUhuttWHnFTmeOX4vP38IhqklpV26BQEgTNZgzXafsxgts/oPEElnhdmVLN4bng==
-  dependencies:
-    "@stencil/core" "^1.17.3"
-
-"@stacks/connect@bns-2-connect":
-  version "4.3.16-alpha.71d36ee.0"
-  resolved "https://registry.yarnpkg.com/@stacks/connect/-/connect-4.3.16-alpha.71d36ee.0.tgz#e11e697e58d5da22e198a22357d4fbba8ae5e1ee"
-  integrity sha512-l7AIrUWQhwo5q2fOL4h4V7U4K0nOkwY1XTNoD7wsdvTYYoPKxxUpnnjjvwzMdSDmgr6Tw6HpOd8WQ3beqmpMxA==
+"@stacks/connect@4.3.16-alpha.139647e.0":
+  version "4.3.16-alpha.139647e.0"
+  resolved "https://registry.yarnpkg.com/@stacks/connect/-/connect-4.3.16-alpha.139647e.0.tgz#adf5ed132459e827f2bab893c2b6b9a37e80f824"
+  integrity sha512-Ww4VTDcVILA6G7Wx3+yu9J2vsXcxqPPTTERS1EVcf/bGka3GIk/a9juHUvCq+ZFE0UrrtZnA+c0wGNKizHmRaQ==
   dependencies:
     "@blockstack/stacks-transactions" "0.7.0"
     "@stacks/auth" bns-2
-    "@stacks/connect-ui" "^2.17.17-alpha.71d36ee.0"
+    "@stacks/connect-ui" "^2.17.17-alpha.139647e.0"
     jsontokens "^3.0.0"
 
 "@stacks/encryption@^1.0.0-beta.19":
