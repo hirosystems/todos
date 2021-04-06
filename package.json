@@ -68,5 +68,9 @@
     "enzyme-adapter-react-16": "^1.14.0",
     "eslint-config-react-app": "^5.2.1",
     "react-addons-test-utils": "^15.6.2"
+  },
+  "resolutions": {
+    "@stacks/connect": "bns-2-connect",
+    "@stacks/connect-ui": "bns-2-connect"
   }
 }
