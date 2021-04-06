@@ -9,9 +9,10 @@ export function authenticate() {
   showConnect({
     appDetails: {
       name: 'Todos',
-      icon: window.location.origin + '/logo.svg',
+      icon: window.location.origin + '/logo.png',
     },
     redirectTo: '/',
+    authOrigin: 'https://pr-1103.app.stacks.engineering/',
     finished: () => {
       window.location.reload();
     },
