@@ -1566,6 +1566,13 @@
   dependencies:
     "@stencil/core" "^1.17.3"
 
+"@stacks/connect-ui@bns-2-connect":
+  version "2.17.17-alpha.4306f7b.0"
+  resolved "https://registry.yarnpkg.com/@stacks/connect-ui/-/connect-ui-2.17.17-alpha.4306f7b.0.tgz#91fab2b7aa951634b27acff6225a8ec972a84c03"
+  integrity sha512-fUn69d1PqtajqGs5pzbUv8rjP3guomiV+IedfEkBcNeG10BN0CXoQU3SKpXDWIXxCHnipaQ/uzn5LAVjSxMUYw==
+  dependencies:
+    "@stencil/core" "^1.17.3"
+
 "@stacks/connect@bns-2-connect":
   version "4.3.16-alpha.4306f7b.0"
   resolved "https://registry.yarnpkg.com/@stacks/connect/-/connect-4.3.16-alpha.4306f7b.0.tgz#3493982bbc7ef77c7e5d8901c9095cb3ca0d8992"
