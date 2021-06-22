@@ -12,7 +12,7 @@ export function authenticate() {
       icon: window.location.origin + '/logo.svg',
     },
     redirectTo: '/',
-    finished: () => {
+    onFinish: () => {
       window.location.reload();
     },
     userSession: userSession,
