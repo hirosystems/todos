@@ -1,3 +1,5 @@
+import { StacksMainnet } from '@stacks/network';
+import { fetchPrivate } from '@stacks/common';
 import { AppConfig, UserSession, showConnect } from '@stacks/connect';
 import { Person } from '@stacks/profile';
 
@@ -26,3 +28,18 @@ export function getUserData() {
 export function getPerson() {
   return new Person(getUserData().profile);
 }
+
+export const network = new StacksMainnet();
+
+export const fetchFirstName = async (address, network) => {
+  try {
+    const namesResponse = await fetchPrivate(
+      `${network.bnsLookupUrl}/v1/addresses/stacks/${address}`
+    );
+    const namesJson = await namesResponse.json();
+    if ((namesJson.names.length || 0) > 0) {
+      return namesJson.names[0];
+    }
+  } catch (e) {}
+  return undefined;
+};
