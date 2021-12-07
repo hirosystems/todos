@@ -1,5 +1,5 @@
 {
-  "name": "todos",
+  "name": "@hirosystems/todos",
   "description": "A simple todos app powered by Stacks.js",
   "author": "Michael Stivala <michaelstivala@me.com> (https://michaelstivala.com/)",
   "contributors": [
