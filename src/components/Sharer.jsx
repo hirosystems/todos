@@ -1,10 +1,8 @@
 import React from 'react';
 import { Flex, Box, Text, Input, useClipboard } from '@blockstack/ui';
 import { ChainIcon } from './icons/chain';
-import { userSession } from '../auth';
 
-export const Sharer = ({ togglePublic, isPublic }) => {
-  const { username } = userSession.loadUserData();
+export const Sharer = ({ togglePublic, isPublic, username }) => {
   const url = `${document.location.origin}/todos/${username}`;
   const { onCopy } = useClipboard(url);
   return (
@@ -96,6 +94,42 @@ export const Sharer = ({ togglePublic, isPublic }) => {
             </Box>
           </>
         )}
+      </Flex>
+    </Box>
+  );
+};
+
+export const NoUsername = () => {
+  return (
+    <Box
+      width="100%"
+      px={4}
+      py={4}
+      borderColor="ink.200"
+      borderWidth="1px"
+      borderRadius="8px"
+      my={4}
+    >
+      <Flex flexWrap="wrap">
+        <Box>
+          <ChainIcon />
+        </Box>
+        <Box flexGrow={1} px={3}>
+          <Text fontWeight="500" display="block" mb={0} fontSize={1}>
+            Share your todos
+          </Text>
+          <Text fontSize={1}>
+            Your todos can be shared easily with a username. Get one at{' '}
+            <a href="https://xck.app" target="_blank" rel="noreferrer">
+              xck.app
+            </a>{' '}
+            or{' '}
+            <a href="https://btc.us" target="_blank" rel="noreferrer">
+              btc.us
+            </a>
+            .
+          </Text>
+        </Box>
       </Flex>
     </Box>
   );

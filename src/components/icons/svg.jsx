@@ -1,12 +1,5 @@
 import * as React from 'react';
-import { Box, BoxProps } from '@blockstack/ui';
-
-interface SVGProps {
-  viewBox?: string;
-  fill?: string;
-}
-
-type SVG = SVGProps & BoxProps;
+import { Box } from '@blockstack/ui';
 
 export const Svg = ({
   width = '24px',
@@ -14,6 +7,6 @@ export const Svg = ({
   viewBox = '0 0 24 24',
   fill = 'none',
   ...rest
-}: SVG) => {
+}) => {
   return <Box as="svg" width={width} height={height} viewBox={viewBox} fill={fill} {...rest} />;
 };

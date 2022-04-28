@@ -3,24 +3,24 @@ import { Flex, Box, Text } from '@blockstack/ui';
 import { userSession } from '../auth';
 import { Todo } from './Todo';
 import { v4 as uuid } from 'uuid';
-import { Sharer } from './Sharer';
+import { NoUsername, Sharer } from './Sharer';
 import { fetchTasks, saveTasks } from '../storage';
 import exportFromJSON from 'export-from-json';
 
-export const TodoList = () => {
+export const TodoList = ({ username }) => {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isPublic, setIsPublic] = useState(false);
-  const [username, setUsername] = useState('');
+  const [usernameOfTodos, setUsernameOfTodos] = useState('');
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
-    const username = document.location.pathname.split('/')[2];
-    if (username) {
-      setUsername(username);
+    const name = document.location.pathname.split('/')[2];
+    if (name) {
+      setUsernameOfTodos(name);
     }
     const doFetchTasks = async () => {
-      const response = await fetchTasks(userSession, username);
+      const response = await fetchTasks(userSession, name);
       if (response.tasks === null) {
         setNotFound(true);
       } else {
@@ -63,7 +63,7 @@ export const TodoList = () => {
       index={index}
       key={task.id}
       save={saveTask}
-      disabled={!!username}
+      disabled={!!usernameOfTodos}
       create={createTask}
     />
   ));
@@ -82,11 +82,11 @@ export const TodoList = () => {
     if (notFound) {
       return '404. No todos found here.';
     }
-    if (username) {
+    if (usernameOfTodos) {
       if (isPublic) {
-        return `${username.split('.')[0]}'s todos`;
+        return `${usernameOfTodos.split('.')[0]}'s todos`;
       }
-      return `${username.split('.')[0]}'s todos are private`;
+      return `${usernameOfTodos.split('.')[0]}'s todos are private`;
     }
     return 'My todos';
   };
@@ -103,14 +103,20 @@ export const TodoList = () => {
           <Text cursor="pointer" fontSize={1} color="blue" fontWeight="500" onClick={exportData}>
             {getDownload()}
           </Text>
-          {!loading && !username && (
-            <Sharer
-              isPublic={isPublic}
-              togglePublic={() => {
-                void saveTasks(userSession, tasks, !isPublic);
-                setIsPublic(!isPublic);
-              }}
-            />
+          {!loading && !usernameOfTodos && (
+            <>
+              {username && (
+                <Sharer
+                  username={username}
+                  isPublic={isPublic}
+                  togglePublic={() => {
+                    void saveTasks(userSession, tasks, !isPublic);
+                    setIsPublic(!isPublic);
+                  }}
+                />
+              )}
+              <NoUsername />
+            </>
           )}
           {loading ? <Text>loading...</Text> : todos}
         </Flex>

@@ -1,6 +1,6 @@
-const blockstackConfig = require('@blockstack/eslint-config');
+const stacksConfig = require('@stacks/eslint-config');
 
-const { parser, ...rest } = blockstackConfig;
+const { parser, ...rest } = stacksConfig;
 
 module.exports = {
   ...rest,

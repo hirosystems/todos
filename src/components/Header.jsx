@@ -1,12 +1,17 @@
 import React from 'react';
 import { Flex, Box, Text } from '@blockstack/ui';
-import { getPerson, getUserData, userSession } from '../auth';
+import { getPerson, userSession } from '../auth';
 import { Logo } from './icons/logo';
+import { truncateMiddle } from '@stacks/ui-utils';
 
-const Auth = () => {
+const Auth = ({ username, address }) => {
   if (!userSession.isUserSignedIn()) {
     return null;
   }
+
+  const Username = ({ username, address }) => {
+    return <Text fontWeight="500">{username || (address && truncateMiddle(address)) || ''}</Text>;
+  };
 
   const Avatar = () => {
     const person = getPerson();
@@ -32,7 +37,7 @@ const Auth = () => {
   return (
     <Box>
       <Avatar />
-      <Text fontWeight="500">{getUserData().username}</Text>
+      <Username username={username} address={address} />
       <Text
         fontWeight="300"
         display="inline-block"
@@ -50,7 +55,7 @@ const Auth = () => {
   );
 };
 
-export const Header = () => {
+export const Header = ({ username, address }) => {
   return (
     <Flex width="100%" justifyContent="space-between" px={4} py={3}>
       <Box alignItems onClick={() => (document.location = '/')} cursor="pointer">
@@ -59,7 +64,7 @@ export const Header = () => {
           Todos
         </Text>
       </Box>
-      <Auth />
+      <Auth username={username} address={address} />
     </Flex>
   );
 };
