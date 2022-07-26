@@ -11,7 +11,7 @@ Want to run the app locally and make changes?
 Follow these instructions:
 
 ``` bash
-git clone https://github.com/blockstack/todos && cd todos
+git clone https://github.com/hirosystems/todos && cd todos
 yarn install
 yarn run start
 ```
